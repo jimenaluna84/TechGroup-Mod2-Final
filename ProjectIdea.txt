@@ -1,0 +1,13 @@
+Un colegio tiene muchos cursos. 
+Cada curso tiene multiples materias y muchos alumnos.
+Un maestro puede dictar multiples materias pero una materia solo puede tener un maestro.
+Para cada materia, el maestro otorga notas del 0 - 100 a cada estudiante al final del año.
+El maestro puede hacer entrega de las notas de sus materias en 2 formatos CSV o JSON.
+Dependiendo del editor que ellos utilicen.
+No se descarta la posibilidad que en un futuro se soporten otros formatos.
+Cada año el director del colegio fija promedios para cada curso, con el fin de conocer:
+ - Quienes deben de ser becados(Si ninguno cumple la nota solo los estudiantes con el mejor promedio del curso seran becados), 
+ - Quienes expulsados.
+ - De quienes sus padres deberian ser notificados cuando el estudiante no esta cumpliendo con lo que la colegio requiere.
+
+Ademas se debe de guardar los resultados finales de cada curso en un archivo que ordene a los estudiantes por su promedio de mayor a menor.

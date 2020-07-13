@@ -1,4 +1,4 @@
-package lunamary.ReadData;
+package lunamary.readData;
 
 public class ReadFile {
 }

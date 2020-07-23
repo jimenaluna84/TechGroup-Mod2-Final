@@ -1,12 +1,22 @@
 package lunamary.model;
 
-public class Grade {
+import lunamary.services.SubjectObservable;
+
+public class Grade extends SubjectObservable {
     private int grade;
     private Subject subject;
 
-    public Grade(int grade, Subject subject) {
+    public Grade() {
+        super();
         this.grade = grade;
-        this.subject = subject;
+
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+        super.notifyNow();
+
+
     }
 
 

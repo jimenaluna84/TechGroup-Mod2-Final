@@ -6,6 +6,7 @@ import java.util.List;
 public class Classroom {
     private List<Subject> subject;
     private List<Student> student;
+
     private int averageScholarshipGrade;
     private int averageExpelledGrade;
     private String name;

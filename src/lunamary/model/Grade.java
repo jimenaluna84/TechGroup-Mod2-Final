@@ -14,7 +14,7 @@ public class Grade extends SubjectObservable {
 
     public void setGrade(int grade) {
         this.grade = grade;
-        super.notifyNow();
+        super.notifyNow(grade);
 
 
     }

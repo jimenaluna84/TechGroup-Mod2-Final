@@ -2,9 +2,10 @@ package lunamary.services;
 
 public class SubjectObservable {
 
-   public void notifyNow()  //alert that grade is updated
+    public void notifyNow(int grade)  //alert that grade is updated
     {
-        System.out.println("sadasdas");
+        GradeService gradeService = new GradeService();
+        gradeService.validateGrade(50);
     }
 
 }

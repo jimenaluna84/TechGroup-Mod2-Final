@@ -7,6 +7,6 @@ public class NotificationService implements IObserver {
 
     @Override
     public void update() {
-        System.out.print("ENVIANDO EMAIL PORQUE ELA NOTA ES DE REPROBADO");
+        System.out.print("NOTIFIYING!!!!!!!!!!!!!!!!!!");
     }
 }

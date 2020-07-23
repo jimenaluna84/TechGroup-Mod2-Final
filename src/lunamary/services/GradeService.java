@@ -27,7 +27,7 @@ public class GradeService extends SubjectObservable {
         observers.add(o);
     }
 
-    @Override
+
     public void notifyNow() {
         for (IObserver o : observers) {
             o.update();

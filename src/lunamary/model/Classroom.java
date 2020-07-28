@@ -1,40 +1,53 @@
 package lunamary.model;
 
-import java.rmi.StubNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Classroom {
-    private List<Subject> subject;
-    private List<Student> student;
+    private List<Subject> subjectList;
+    private List<Person> studentList;
 
     private int averageScholarshipGrade;
     private int averageExpelledGrade;
     private String name;
 
-    public Classroom(List<Subject> subject, List<Student> student,
-                     int averageExpelledGrade, int averageScholarshipGrade, String name) {
-        this.subject = subject;
-        this.student = student;
-        this.averageExpelledGrade = averageExpelledGrade;
-        this.averageScholarshipGrade = averageScholarshipGrade;
+
+    public Classroom(List<Person> studentList, List<Subject> subjectList, String name) {
+        this.studentList = studentList;
+        this.subjectList = subjectList;
         this.name = name;
-
     }
 
-    public List<Subject> getSubject() {
-        return subject;
+    public List<Subject> getSubjectList() {
+        return subjectList;
     }
 
-    public void setSubject(List<Subject> subject) {
-        this.subject = subject;
+    public void setSubjectList(List<Subject> subjectList) {
+        this.subjectList = subjectList;
     }
 
-    public List<Student> getStudent() {
-        return student;
+    public List<Person> getStudentList() {
+        return studentList;
     }
 
-    public void setStudent(List<Student> student) {
-        this.student = student;
+    public void setStudentList(List<Person> studentList) {
+        this.studentList = studentList;
+    }
+
+    public int getAverageScholarshipGrade() {
+        return averageScholarshipGrade;
+    }
+
+    public void setAverageScholarshipGrade(int averageScholarshipGrade) {
+        this.averageScholarshipGrade = averageScholarshipGrade;
+    }
+
+    public int getAverageExpelledGrade() {
+        return averageExpelledGrade;
+    }
+
+    public void setAverageExpelledGrade(int averageExpelledGrade) {
+        this.averageExpelledGrade = averageExpelledGrade;
     }
 
     public String getName() {
@@ -45,11 +58,4 @@ public class Classroom {
         this.name = name;
     }
 
-    public int getAverageScholarshipGrade() {
-        return averageScholarshipGrade;
-    }
-
-    public int getAverageExpelledGrade() {
-        return averageExpelledGrade;
-    }
 }

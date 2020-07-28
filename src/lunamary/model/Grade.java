@@ -1,5 +1,7 @@
 package lunamary.model;
-import lunamary.service.*;
+
+import lunamary.services.SubjectObservable;
+
 public class Grade extends SubjectObservable {
     private int grade;
     private Subject subject;
@@ -7,6 +9,10 @@ public class Grade extends SubjectObservable {
     public Grade(int grade) {
         super();
         this.grade = grade;
+
+    }
+
+    public Grade() {
 
     }
 

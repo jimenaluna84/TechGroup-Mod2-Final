@@ -1,13 +1,26 @@
 package lunamary.services;
 
 import lunamary.model.Classroom;
+import lunamary.model.Person;
 
-import java.util.Date;
+import java.util.List;
+
 
 public class DirectorService {
-    public void assignAverage(Classroom classroom, Date year, Integer averageExpelled, Integer averagescholarship){
+    Person director;
 
+    public DirectorService(Person director) {
+        this.director = director;
+    }
 
+    public void assignAverage(List<Classroom> classroom, String year, Integer averageExpelled, Integer averagescholarship, String name) {
+        for (Classroom var : classroom) {
+            if (name.equals(var.getName())) {
+                var.setAverageExpelledGrade(averageExpelled);
+                var.setAverageScholarshipGrade(averagescholarship);
+            }
+
+        }
 
 
     }

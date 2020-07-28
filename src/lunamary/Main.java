@@ -1,9 +1,7 @@
 package lunamary;
 
 import lunamary.model.*;
-import lunamary.services.GradeService;
-import lunamary.services.IObserver;
-import lunamary.services.NotificationService;
+import lunamary.services.*;
 
 import java.util.*;
 
@@ -11,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Person student = new Student("Mary", "Luna", 34);
+        Student student = new Student("Mary", "Luna", 34);
         String res = student.getName();
         System.out.println("Student: " + res);
         Director director = new Director("director", "director", 56);
@@ -38,6 +36,13 @@ public class Main {
 
         School school = new School("School1", classroomList, director);
 
+        DirectorService directorService = new DirectorService(director);
+        directorService.assignAverage(classroomList, "01-01-2020", 50, 100, "Classroom1");
+        System.out.println(" aplazados: " + classroom.getAverageExpelledGrade());
+        System.out.println("Becado: " + classroom.getAverageScholarshipGrade());
+
+        TeacherService teacherService = new TeacherService(teacher);
+        teacherService.assignAverageStudent(40, student, subject1, "2020");
 
         int mygrade = 50;
         Grade grade = new Grade();

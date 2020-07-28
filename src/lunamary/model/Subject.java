@@ -2,9 +2,14 @@ package lunamary.model;
 
 public class Subject {
     private String name;
-    private Teacher teacher;
+    private Person teacher;
 
     public Subject(String name, Teacher teacher) {
+        this.name = name;
+        this.teacher = teacher;
+    }
+
+    public Subject(Person teacher, String name) {
         this.name = name;
         this.teacher = teacher;
     }
@@ -17,7 +22,7 @@ public class Subject {
         this.name = name;
     }
 
-    public Teacher getTeacher() {
+    public Person getTeacher() {
         return teacher;
     }
 

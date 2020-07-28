@@ -21,4 +21,35 @@ public class Classroom {
 
     }
 
+    public List<Subject> getSubject() {
+        return subject;
+    }
+
+    public void setSubject(List<Subject> subject) {
+        this.subject = subject;
+    }
+
+    public List<Student> getStudent() {
+        return student;
+    }
+
+    public void setStudent(List<Student> student) {
+        this.student = student;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAverageScholarshipGrade() {
+        return averageScholarshipGrade;
+    }
+
+    public int getAverageExpelledGrade() {
+        return averageExpelledGrade;
+    }
 }

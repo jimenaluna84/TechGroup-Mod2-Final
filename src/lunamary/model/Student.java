@@ -1,6 +1,8 @@
 package lunamary.model;
 
 public class Student extends Person {
+    private String notificationEmail;
+
     public String getNotificationEmail() {
         return notificationEmail;
     }
@@ -8,8 +10,6 @@ public class Student extends Person {
     public void setNotificationEmail(String notificationEmail) {
         this.notificationEmail = notificationEmail;
     }
-
-    String notificationEmail;
 
 
     public Student(String name, String lastName, int age) {

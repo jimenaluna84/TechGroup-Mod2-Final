@@ -1,8 +1,10 @@
 package lunamary.model;
 
-public class Person {
+public class  Person  {
 
     private String name;
+    private String lastname;
+    private int age;
 
     public String getName() {
         return name;
@@ -12,12 +14,12 @@ public class Person {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public int getAge() {
@@ -27,14 +29,4 @@ public class Person {
     public void setAge(int age) {
         this.age = age;
     }
-
-    private String lastName;
-    private int age;
-
-    public Person(String name, String lastName, int age) {
-        this.name = name;
-        this.lastName = lastName;
-        this.age = age;
-    }
-
 }

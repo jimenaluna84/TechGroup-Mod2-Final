@@ -4,6 +4,7 @@ package lunamary.model;
 
 import java.util.Date;
 import java.util.List;
+import lunamary.model.*;
 
 public class GradeStudent {
     private List<Grade> gradeList;
@@ -16,5 +17,19 @@ public class GradeStudent {
         this.year = year;
     }
 
+    public List<Grade> getGradeList() {
+        return gradeList;
+    }
 
+    public void setGradeList(List<Grade> gradeList) {
+        this.gradeList = gradeList;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }

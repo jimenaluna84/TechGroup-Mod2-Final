@@ -48,7 +48,6 @@ public class Main {
         Grade grade = new Grade();
         grade.setGrade(mygrade);
 
-
         List<IObserver> observers = new ArrayList<>();
 
 

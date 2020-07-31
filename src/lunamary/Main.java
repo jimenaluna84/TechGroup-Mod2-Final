@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         Device device1 = new Device("Celular", "77559048");
-        List<Device> deviceList = new ArrayList<Device>();
+        List<Device> deviceList = new ArrayList<>();
         deviceList.add(device1);
 
         Parent parent = new Parent("papa", "papa", 20, deviceList);
@@ -25,7 +25,7 @@ public class Main {
         String res2 = teacher.getName();
         System.out.println("Teacher: " + res2);
 
-        Subject subject1 = new Subject(teacher, "Subject1");
+        Subject subject1 = new Subject(teacher, "Materia1");
 
         List<Student> studentList = new ArrayList<>();
         studentList.add(student);
@@ -34,17 +34,17 @@ public class Main {
         subjectList.add(subject1);
 
 
-        Classroom classroom = new Classroom(studentList, subjectList, "Classroom1");
+        Classroom classroom = new Classroom(subjectList, "Curso1A", studentList);
 
         List<Classroom> classroomList = new ArrayList<>();
         classroomList.add(classroom);
 
 
-        School school = new School("School1", classroomList, director);
+        School school = new School("Escueka1", classroomList, director);
 
         DirectorService directorService = new DirectorService(director);
         directorService.assignAverage(classroomList, "01-01-2020", 50, 100, "Classroom1");
-        System.out.println(" aplazados: " + classroom.getAverageExpelledGrade());
+        System.out.println(" aplazados: " + classroom.getMinimumAverageApprobation());
         System.out.println("Becado: " + classroom.getAverageScholarshipGrade());
 
         TeacherService teacherService = new TeacherService(teacher);

@@ -4,11 +4,12 @@ import lunamary.services.SubjectObservable;
 
 public class Grade extends SubjectObservable {
     private int grade;
-    private Subject subject;
+    private String description;
 
-    public Grade(int grade) {
+    public Grade(int grade, String description) {
         super();
         this.grade = grade;
+        this.description= description;
 
     }
 

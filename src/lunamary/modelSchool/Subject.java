@@ -1,14 +1,20 @@
 package lunamary.modelSchool;
 
+import lunamary.modelPerson.Director;
+import lunamary.modelPerson.Student;
 import lunamary.modelPerson.Teacher;
+
+import java.util.List;
 
 public class Subject {
     private String name;
     private Teacher teacher;
 
+
     public Subject(String name, Teacher teacher) {
         this.name = name;
         this.teacher = teacher;
+
     }
 
     public Subject(Teacher teacher, String name) {
@@ -31,4 +37,6 @@ public class Subject {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
+
+
 }

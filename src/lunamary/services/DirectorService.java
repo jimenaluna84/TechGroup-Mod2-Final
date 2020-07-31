@@ -16,7 +16,7 @@ public class DirectorService {
     public void assignAverage(List<Classroom> classroom, String year, Integer averageExpelled, Integer averagescholarship, String name) {
         for (Classroom var : classroom) {
             if (name.equals(var.getName())) {
-                var.setAverageExpelledGrade(averageExpelled);
+                var.setMinimumAverageApprobation(averageExpelled);
                 var.setAverageScholarshipGrade(averagescholarship);
             }
 

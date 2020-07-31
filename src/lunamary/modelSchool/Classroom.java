@@ -1,6 +1,7 @@
 package lunamary.modelSchool;
 
 import lunamary.modelPerson.Student;
+import lunamary.modelPerson.Teacher;
 
 import java.util.List;
 
@@ -9,14 +10,14 @@ public class Classroom {
     private List<Student> studentList;
 
     private int averageScholarshipGrade;
-    private int averageExpelledGrade;
+    private int minimumAverageApprobation;
     private String name;
 
 
-    public Classroom(List<Student> studentList, List<Subject> subjectList, String name) {
-        this.studentList = studentList;
+    public Classroom(List<Subject> subjectList, String name, List<Student> studentList) {
         this.subjectList = subjectList;
         this.name = name;
+        this.studentList = studentList;
     }
 
     public List<Subject> getSubjectList() {
@@ -27,14 +28,6 @@ public class Classroom {
         this.subjectList = subjectList;
     }
 
-    public List<Student> getStudentList() {
-        return studentList;
-    }
-
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
-    }
-
     public int getAverageScholarshipGrade() {
         return averageScholarshipGrade;
     }
@@ -43,12 +36,12 @@ public class Classroom {
         this.averageScholarshipGrade = averageScholarshipGrade;
     }
 
-    public int getAverageExpelledGrade() {
-        return averageExpelledGrade;
+    public int getMinimumAverageApprobation() {
+        return minimumAverageApprobation;
     }
 
-    public void setAverageExpelledGrade(int averageExpelledGrade) {
-        this.averageExpelledGrade = averageExpelledGrade;
+    public void setMinimumAverageApprobation(int minimumAverageApprobation) {
+        this.minimumAverageApprobation = minimumAverageApprobation;
     }
 
     public String getName() {
@@ -58,5 +51,14 @@ public class Classroom {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
+    }
+
 
 }

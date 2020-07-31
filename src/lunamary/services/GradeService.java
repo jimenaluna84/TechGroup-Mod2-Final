@@ -3,7 +3,7 @@ package lunamary.services;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GradeService extends SubjectObservable {
+public class GradeService  {
     private List<IObserver> observers;  // mas de un observador
 
     public GradeService() {
@@ -14,7 +14,6 @@ public class GradeService extends SubjectObservable {
         // logica de validacion con el promedio setedo por el director
         String res = "test";
         if (res == "test") {
-            notifyNow();
         } else {
 
             System.out.println("Congratulations!");
@@ -28,11 +27,6 @@ public class GradeService extends SubjectObservable {
     }
 
 
-    public void notifyNow() {
-        for (IObserver o : observers) {
-            o.update();
-        }
 
-    }
 
 }

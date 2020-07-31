@@ -39,8 +39,15 @@ public class Main {
         List<Classroom> classroomList = new ArrayList<>();
         classroomList.add(classroom);
 
+        Grade grade = new Grade(40, "!çprimer trimestre");
+        GradeStudent gradeStudent = new GradeStudent();
+        List<GradeStudent> gradeStudentList = new ArrayList<>();
+        gradeStudentList.add(gradeStudent);
 
-        School school = new School("Escueka1", classroomList, director);
+
+        School school = new School("Escueka1", director, classroomList, gradeStudentList);
+        school.getName();
+
 
         DirectorService directorService = new DirectorService(director);
         directorService.assignAverage(classroomList, "01-01-2020", 50, 100, "Classroom1");

@@ -3,12 +3,12 @@ package lunamary.modelPerson;
 import java.util.List;
 
 public class Student extends Person {
-    private Parents parents;
+    private Parent parent;
 
 
-    public Student(String name, String lastName, int age, List<Device> deviceList, Parents parents) {
+    public Student(String name, String lastName, int age, List<Device> deviceList, Parent parent) {
         super(name, lastName, age, deviceList);
-        this.parents = parents;
+        this.parent = parent;
 
     }
 

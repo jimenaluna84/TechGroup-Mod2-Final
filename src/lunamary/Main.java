@@ -1,8 +1,6 @@
 package lunamary;
 
-import lunamary.modelPerson.Director;
-import lunamary.modelPerson.Student;
-import lunamary.modelPerson.Teacher;
+import lunamary.modelPerson.*;
 import lunamary.modelSchool.*;
 import lunamary.services.*;
 
@@ -11,14 +9,19 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
+        Device device1 = new Device("Celular", "77559048");
+        List<Device> deviceList = new ArrayList<Device>();
+        deviceList.add(device1);
 
-        Student student = new Student("Mary", "Luna", 34,);
+        Parent parent = new Parent("papa", "papa", 20, deviceList);
+
+        Student student = new Student("Mary", "Luna", 34, deviceList, parent);
         String res = student.getName();
         System.out.println("Student: " + res);
-        Director director = new Director("director", "director", 56);
+        Director director = new Director("director", "director", 56, deviceList);
         String res1 = director.getName();
         System.out.println("Director: " + res1);
-        Teacher teacher = new Teacher("director", "director", 56);
+        Teacher teacher = new Teacher("director", "director", 56, deviceList);
         String res2 = teacher.getName();
         System.out.println("Teacher: " + res2);
 

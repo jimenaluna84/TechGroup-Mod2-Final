@@ -1,10 +1,11 @@
 
 
-package lunamary.model;
+package lunamary.modelSchool;
+
+import lunamary.modelPerson.Student;
 
 import java.util.Date;
 import java.util.List;
-import lunamary.model.*;
 
 public class GradeStudent {
     private List<Grade> gradeList;

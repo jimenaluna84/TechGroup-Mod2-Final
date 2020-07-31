@@ -1,4 +1,4 @@
-package lunamary.model;
+package lunamary.modelSchool;
 
 import lunamary.services.SubjectObservable;
 

@@ -1,18 +1,19 @@
-package lunamary.model;
+package lunamary.modelSchool;
 
-import java.util.ArrayList;
+import lunamary.modelPerson.Student;
+
 import java.util.List;
 
 public class Classroom {
     private List<Subject> subjectList;
-    private List<Person> studentList;
+    private List<Student> studentList;
 
     private int averageScholarshipGrade;
     private int averageExpelledGrade;
     private String name;
 
 
-    public Classroom(List<Person> studentList, List<Subject> subjectList, String name) {
+    public Classroom(List<Student> studentList, List<Subject> subjectList, String name) {
         this.studentList = studentList;
         this.subjectList = subjectList;
         this.name = name;
@@ -26,11 +27,11 @@ public class Classroom {
         this.subjectList = subjectList;
     }
 
-    public List<Person> getStudentList() {
+    public List<Student> getStudentList() {
         return studentList;
     }
 
-    public void setStudentList(List<Person> studentList) {
+    public void setStudentList(List<Student> studentList) {
         this.studentList = studentList;
     }
 

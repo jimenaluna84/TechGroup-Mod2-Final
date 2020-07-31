@@ -1,15 +1,17 @@
-package lunamary.model;
+package lunamary.modelSchool;
+
+import lunamary.modelPerson.Teacher;
 
 public class Subject {
     private String name;
-    private Person teacher;
+    private Teacher teacher;
 
     public Subject(String name, Teacher teacher) {
         this.name = name;
         this.teacher = teacher;
     }
 
-    public Subject(Person teacher, String name) {
+    public Subject(Teacher teacher, String name) {
         this.name = name;
         this.teacher = teacher;
     }
@@ -22,7 +24,7 @@ public class Subject {
         this.name = name;
     }
 
-    public Person getTeacher() {
+    public Teacher getTeacher() {
         return teacher;
     }
 

@@ -1,17 +1,14 @@
 package lunamary.services;
 
-import lunamary.model.Classroom;
-import lunamary.model.Person;
-import lunamary.model.Student;
-import lunamary.model.Subject;
-
-import java.util.List;
+import lunamary.modelPerson.Director;
+import lunamary.modelPerson.Student;
+import lunamary.modelSchool.Subject;
 
 
 public class TeacherService {
-    Person director;
+    Director director;
 
-    public TeacherService(Person director) {
+    public TeacherService(Director director) {
         this.director = director;
     }
 

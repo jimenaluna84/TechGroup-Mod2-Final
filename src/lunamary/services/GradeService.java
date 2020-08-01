@@ -3,12 +3,8 @@ package lunamary.services;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GradeService  {
-    private List<IObserver> observers;  // mas de un observador
+public class GradeService {
 
-    public GradeService() {
-        observers = new ArrayList<IObserver>();
-    }
 
     public void validateGrade(int grade) {
         // logica de validacion con el promedio setedo por el director
@@ -21,12 +17,6 @@ public class GradeService  {
 
 
     }
-
-    public void joinObserver(IObserver o) {
-        observers.add(o);
-    }
-
-
 
 
 }

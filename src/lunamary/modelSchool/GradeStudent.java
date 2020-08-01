@@ -10,9 +10,9 @@ import java.util.List;
 public class GradeStudent {
     private List<Grade> gradeList;
     private Student student;
-    private Date year;
+    private String year;
 
-    public GradeStudent(List<Grade> gradeList, Student student, Date year) {
+    public GradeStudent(List<Grade> gradeList, Student student, String year) {
         this.gradeList = gradeList;
         this.student = student;
         this.year = year;

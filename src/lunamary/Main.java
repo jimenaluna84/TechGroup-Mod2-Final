@@ -8,6 +8,50 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner sn = new Scanner(System.in);
+        boolean salir = false;
+        int opcion;
+        while (!salir) {
+            System.out.println("1. Register New School");
+            System.out.println("2. Register New Classroom");
+            System.out.println("3. Register New Subject");
+            System.out.println("4. Register Student");
+            System.out.println("5. Register Director");
+            System.out.println("6. Register Teacher");
+            System.out.println("7. Director set Average by Course");
+            System.out.println("8. Teacher add Grade Student");
+            System.out.println("9. Teacher Import Grade");
+            System.out.println("10. Director generate General Report");
+            System.out.println("11. Director generate General Report");
+
+
+            try {
+
+                System.out.println("Write Option");
+                opcion = sn.nextInt();
+
+                switch (opcion) {
+                    case 1:
+
+                        break;
+                    case 2:
+
+                        break;
+                    case 3:
+
+                        break;
+                    case 12:
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Tried again");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Should be enter number");
+                sn.next();
+            }
+        }
+
 
         Device device1 = new Device("Celular", "77559048");
         List<Device> deviceList = new ArrayList<>();
@@ -39,10 +83,10 @@ public class Main {
         List<Classroom> classroomList = new ArrayList<>();
         classroomList.add(classroom);
 
-        Grade grade = new Grade(40, "!çprimer trimestre");
-        GradeStudent gradeStudent = new GradeStudent();
+        Grade grade = new Grade();
+        List<Grade> gradeList = new ArrayList<>();
+        GradeStudent gradeStudent = new GradeStudent(gradeList, student, "2020");
         List<GradeStudent> gradeStudentList = new ArrayList<>();
-        gradeStudentList.add(gradeStudent);
 
 
         School school = new School("Escueka1", director, classroomList, gradeStudentList);
@@ -57,17 +101,19 @@ public class Main {
         TeacherService teacherService = new TeacherService(teacher);
         teacherService.assignAverageStudent(40, student, subject1, "2020");
 
-        int mygrade = 50;
-        Grade grade = new Grade();
-        grade.setGrade(mygrade);
+
+        grade.setGrade(10);
+        grade.setDescription("primer trimestre");
+
+        GradeService gradeService = new GradeService();
+        gradeService.validateGrade(grade.getGrade());
+
 
         List<IObserver> observers = new ArrayList<>();
 
 
         NotificationService notificationService = new NotificationService();
-        GradeService gradeService = new GradeService();
-        gradeService.joinObserver(notificationService);
-        gradeService.validateGrade(mygrade);
+//        gradeService.joinObserver(notificationService);
 
 
     }

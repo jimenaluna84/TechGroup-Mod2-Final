@@ -11,16 +11,11 @@ public class Subject {
     private Teacher teacher;
 
 
-    public Subject(String name, Teacher teacher) {
+    public Subject(String name) {
         this.name = name;
-        this.teacher = teacher;
 
     }
 
-    public Subject(Teacher teacher, String name) {
-        this.name = name;
-        this.teacher = teacher;
-    }
 
     public String getName() {
         return name;

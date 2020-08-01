@@ -7,7 +7,7 @@ public class Student extends Person {
 
 
     public Student(String name, String lastName, int age, List<Device> deviceList, Parent parent) {
-        super(name, lastName, age, deviceList);
+        super(name, lastName, age);
         this.parent = parent;
 
     }

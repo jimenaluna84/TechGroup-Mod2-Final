@@ -7,10 +7,14 @@ import java.util.List;
 
 
 public class DirectorService {
-    Director director;
 
-    public DirectorService(Director director) {
-        this.director = director;
+    public DirectorService() {
+
+    }
+
+    public Director createDirector(String name, String lastname, int age) {
+        Director director = new Director(name, lastname, age);
+        return director;
     }
 
     public void assignAverage(List<Classroom> classroom, String year, Integer averageExpelled, Integer averagescholarship, String name) {

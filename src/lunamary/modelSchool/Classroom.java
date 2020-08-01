@@ -1,30 +1,37 @@
 package lunamary.modelSchool;
 
+import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
 import lunamary.modelPerson.Student;
-import lunamary.modelPerson.Teacher;
-
-import java.util.List;
 
 public class Classroom {
-    private List<Subject> subjectList;
-    private List<Student> studentList;
 
+    private MyCircularDoublyLinkedList<Student> studentList;
+    private MyCircularDoublyLinkedList<Subject> subjectList;
     private int averageScholarshipGrade;
     private int minimumAverageApprobation;
     private String name;
+    private String code;
 
 
-    public Classroom(List<Subject> subjectList, String name, List<Student> studentList) {
-        this.subjectList = subjectList;
+    public Classroom(String id, String name) {
+        this.code = id;
         this.name = name;
+        this.subjectList = new MyCircularDoublyLinkedList<>();
+    }
+
+    public MyCircularDoublyLinkedList<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(MyCircularDoublyLinkedList<Student> studentList) {
         this.studentList = studentList;
     }
 
-    public List<Subject> getSubjectList() {
+    public MyCircularDoublyLinkedList<Subject> getSubjectList() {
         return subjectList;
     }
 
-    public void setSubjectList(List<Subject> subjectList) {
+    public void setSubjectList(MyCircularDoublyLinkedList<Subject> subjectList) {
         this.subjectList = subjectList;
     }
 
@@ -52,13 +59,17 @@ public class Classroom {
         this.name = name;
     }
 
-    public List<Student> getStudentList() {
-        return studentList;
+    public String getCode() {
+        return code;
     }
 
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
+    public void setCode(String code) {
+        this.code = code;
     }
 
+
+    public void addSubject(Subject subject) {
+        this.subjectList.add(subject);
+    }
 
 }

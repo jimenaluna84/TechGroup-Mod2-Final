@@ -1,19 +1,19 @@
 package lunamary.modelPerson;
+
 import java.util.List;
 
 public class Person {
 
     private String name;
     private String lastname;
-    private int age;
+    private int ci;
     private List<Device> deviceList;
 
 
-    public Person(String name, String lastName, int age, List<Device> deviceList) {
+    public Person(String name, String lastName, int age) {
         this.name = name;
         this.lastname = lastName;
-        this.age = age;
-        this.deviceList = deviceList;
+        this.ci = age;
     }
 
     public String getName() {
@@ -32,12 +32,12 @@ public class Person {
         this.lastname = lastname;
     }
 
-    public int getAge() {
-        return age;
+    public int getCi() {
+        return ci;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setCi(int ci) {
+        this.ci = ci;
     }
 
     public List<Device> getDeviceList() {

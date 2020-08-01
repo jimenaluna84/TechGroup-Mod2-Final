@@ -1,22 +1,31 @@
 package lunamary.modelSchool;
 
+import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
 import lunamary.modelPerson.Director;
+import lunamary.modelPerson.Teacher;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class School {
 
     private String name;
+    private String address;
     private Director director;
-    private List<Classroom> classroomList;
-    private List<GradeStudent> gradeStudentList;
+
+    private MyCircularDoublyLinkedList<Teacher> teacherList;
+    private MyCircularDoublyLinkedList<Classroom> classroomList;
 
 
-    public School(String name, Director director, List<Classroom> classroomList, List<GradeStudent> gradeStudentList) {
+    private MyCircularDoublyLinkedList<GradeStudent> gradeStudentList;
+
+
+    public School(String name, String address) {
         this.name = name;
-        this.classroomList = classroomList;
-        this.director = director;
-        this.gradeStudentList = gradeStudentList;
+        this.address = address;
+        this.teacherList = new MyCircularDoublyLinkedList<>();
+        this.classroomList = new MyCircularDoublyLinkedList<>();
+
     }
 
     public String getName() {
@@ -35,20 +44,29 @@ public class School {
         this.director = director;
     }
 
-    public List<Classroom> getClassroomList() {
+    public MyCircularDoublyLinkedList<Teacher> getTeacherList() {
+        return teacherList;
+    }
+
+    public void setTeacherList(MyCircularDoublyLinkedList<Teacher> teacherList) {
+        this.teacherList = teacherList;
+    }
+
+    public MyCircularDoublyLinkedList<Classroom> getClassroomList() {
         return classroomList;
     }
 
-    public void setClassroomList(List<Classroom> classroomList) {
+    public void setClassroomList(MyCircularDoublyLinkedList<Classroom> classroomList) {
         this.classroomList = classroomList;
     }
 
-    public List<GradeStudent> getGradeStudentList() {
-        return gradeStudentList;
+
+    public void addTeacher(Teacher teacher) {
+        this.teacherList.add(teacher);
     }
 
-    public void setGradeStudentList(List<GradeStudent> gradeStudentList) {
-        this.gradeStudentList = gradeStudentList;
+    public void addClassroom(Classroom classroom) {
+        this.classroomList.add(classroom);
     }
 
 

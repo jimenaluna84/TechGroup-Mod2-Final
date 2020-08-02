@@ -60,8 +60,8 @@ public class SchoolService {
 
     public static void registerStudent(String idClassroom, String name, String lastName, int ci, String nameParen,
                                        String lastNameParent, int ciParent, String typeDevice1, String identifier1, String typeDevice2, String identifier2) {
-
         StudentService studentService = new StudentService();
+
 
 
 

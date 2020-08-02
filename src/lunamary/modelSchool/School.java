@@ -1,10 +1,7 @@
 package lunamary.modelSchool;
 
 import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
-import lunamary.modelPerson.Device;
-import lunamary.modelPerson.Director;
-import lunamary.modelPerson.Parent;
-import lunamary.modelPerson.Teacher;
+import lunamary.modelPerson.*;
 
 public class School {
 
@@ -16,9 +13,7 @@ public class School {
     private MyCircularDoublyLinkedList<Classroom> classroomList;
     private MyCircularDoublyLinkedList<Parent> parentList;
     private MyCircularDoublyLinkedList<Device> deviceList;
-
-
-    private MyCircularDoublyLinkedList<GradeStudent> gradeStudentList;
+    private MyCircularDoublyLinkedList<Student> gradeStudentList;
 
 
     public School(String name, String address) {

@@ -34,8 +34,9 @@ public class SchoolService {
     }
 
     public static void registerParent(String name, String lastName, int ci) {
-        Parent parent = new Parent(name, lastName, ci);
-        this.school.addParent(parent);
+        ParentService parentService = new ParentService();
+        Parent parent = parentService.createParent(name, lastName, ci);
+        school.addParent(parent);
 
     }
 
@@ -71,13 +72,22 @@ public class SchoolService {
     }
 
     public static void registerStudent(String codeClassroom, String name, String lastName, int ci, String nameParent,
-                                       String lastNameParent, int ciParent, String typeDevice1, String identifier1, String typeDevice2, String identifier2) {
+                                       String lastNameParent, int ciParent, String typeDevice1, String identifier1,
+                                       String typeDevice2, String identifier2) {
+
+        ParentService parentService = new ParentService();
+        Parent parent = parentService.createParent(nameParent, lastNameParent, ciParent);
+
+        DeviceService deviceService = new DeviceService();
+        deviceService.createDevice(typeDevice1, identifier1, parent);
+        deviceService.createDevice(typeDevice2, identifier2, parent);
 
         Classroom classroom = CommonService.getClassroom(school, codeClassroom);
         StudentService studentService = new StudentService();
-        studentService.createStudent("Mary", "Luna", 300);
-        ParentService.createParent(nameParent, lastNameParent, ciParent, typeDevice1, typeDevice1, typeDevice2, )
-
+        Student student = studentService.createStudent(name, lastName, ci);
+        studentService.setParent(student, parent);
+        ClassroomService classroomService = new ClassroomService();
+        classroomService.setStudent(classroom, student);
 
 
     }

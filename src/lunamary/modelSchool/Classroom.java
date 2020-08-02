@@ -72,4 +72,7 @@ public class Classroom {
         this.subjectList.add(subject);
     }
 
+    public void addStudent(Student student) {
+        this.studentList.add(student);
+    }
 }

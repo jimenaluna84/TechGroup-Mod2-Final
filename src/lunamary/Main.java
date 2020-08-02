@@ -1,7 +1,5 @@
 package lunamary;
 
-import lunamary.modelPerson.*;
-import lunamary.modelSchool.*;
 import lunamary.services.*;
 
 import java.util.*;
@@ -9,9 +7,9 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sn = new Scanner(System.in);
-        boolean salir = false;
+        boolean out = false;
         int opcion;
-        while (!salir) {
+        while (!out) {
             System.out.println("1. Register New School");
             System.out.println("2. Register New Classroom");
             System.out.println("3. Register New Subject");
@@ -41,7 +39,7 @@ public class Main {
 
                         break;
                     case 12:
-                        salir = true;
+                        out = true;
                         break;
                     default:
                         System.out.println("Tried again");
@@ -61,12 +59,12 @@ public class Main {
         SchoolService.registerClassroom("2A", "2nd Junior");
         SchoolService.registerClassroom("3A", "3rd Junior");
 
-        SchoolService.registerTeacher("Profesor", "English", 200);
-        SchoolService.registerTeacher("Profesor", "Spanish", 201);
-        SchoolService.registerTeacher("Profesor", "Germany", 202);
+        SchoolService.registerTeacher("Teacher", "English", 200);
+        SchoolService.registerTeacher("Teacher", "Spanish", 201);
+        SchoolService.registerTeacher("Teacher", "Germany", 202);
 
-        schoolService.registerSubject("English", "1A", 200);
-        schoolService.registerSubject("English", "2A", 200);
+        SchoolService.registerSubject("English", "1A", 200);
+        SchoolService.registerSubject("English", "2A", 200);
         schoolService.registerSubject("English", "3A", 200);
 
         schoolService.registerSubject("Spanish", "1A", 201);
@@ -81,8 +79,17 @@ public class Main {
         schoolService.registerAverageClassroom("2A", 100, 51);
         schoolService.registerAverageClassroom("3A", 100, 51);
 
+        schoolService.registerStudent("1A", "Carla", "Student1A", 500, "momCarla", "Torres", 400, "Celphone", "798512451", "Email", "mom1@gmail.com");
+        schoolService.registerStudent("1A", "Carolina", "Student1A", 500, "momCarolina", "Torres", 400, "Celphone", "798512452", "Email", "mom2@gmail.com");
+        schoolService.registerStudent("1A", "Carola", "Student1A", 500, "momCalora", "Torres", 400, "Celphone", "798512453", "Email", "mom3@gmail.com");
 
+        schoolService.registerStudent("2A", "Mario", "Student2A", 500, "dadMario", "Torres", 400, "Celphone", "798512454", "Email", "mom4@gmail.com");
+        schoolService.registerStudent("2A", "Mauricio", "Student2A", 500, "dadMauricio", "Torres", 400, "Celphone", "798512455", "Email", "mom5@gmail.com");
+        schoolService.registerStudent("2A", "Miguel", "Student2A", 500, "dadaMiguel", "Torres", 400, "Celphone", "798512456", "Email", "mom6@gmail.com");
 
+        schoolService.registerStudent("3A", "Teresa", "Student3A", 500, "momTeresa", "Torres", 400, "Celphone", "798512457", "Email", "mom7@gmail.com");
+        schoolService.registerStudent("3A", "Tania", "Student3A", 500, "momMarcos", "Torres", 400, "Celphone", "798512458", "Email", "mom8@gmail.com");
+        schoolService.registerStudent("3A", "Tono", "Student3A", 500, "momMarcos", "Torres", 400, "Celphone", "798512450", "Email", "mom9@gmail.com");
 
 
     }

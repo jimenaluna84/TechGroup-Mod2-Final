@@ -1,18 +1,15 @@
 package lunamary.modelPerson;
 
-import java.util.List;
-
-public class Person {
+public abstract class Person {
 
     private String name;
-    private String lastname;
+    private String lastName;
     private int ci;
-    private List<Device> deviceList;
 
 
     public Person(String name, String lastName, int age) {
         this.name = name;
-        this.lastname = lastName;
+        this.lastName = lastName;
         this.ci = age;
     }
 
@@ -25,11 +22,11 @@ public class Person {
     }
 
     public String getLastname() {
-        return lastname;
+        return lastName;
     }
 
     public void setLastname(String lastname) {
-        this.lastname = lastname;
+        this.lastName = lastname;
     }
 
     public int getCi() {
@@ -40,12 +37,5 @@ public class Person {
         this.ci = ci;
     }
 
-    public List<Device> getDeviceList() {
-        return deviceList;
-    }
-
-    public void setDeviceList(List<Device> deviceList) {
-        this.deviceList = deviceList;
-    }
 
 }

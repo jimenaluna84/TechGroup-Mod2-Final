@@ -1,11 +1,10 @@
 package lunamary.modelSchool;
 
 import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
+import lunamary.modelPerson.Device;
 import lunamary.modelPerson.Director;
+import lunamary.modelPerson.Parent;
 import lunamary.modelPerson.Teacher;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class School {
 
@@ -15,6 +14,8 @@ public class School {
 
     private MyCircularDoublyLinkedList<Teacher> teacherList;
     private MyCircularDoublyLinkedList<Classroom> classroomList;
+    private MyCircularDoublyLinkedList<Parent> parentList;
+    private MyCircularDoublyLinkedList<Device> deviceList;
 
 
     private MyCircularDoublyLinkedList<GradeStudent> gradeStudentList;
@@ -60,6 +61,22 @@ public class School {
         this.classroomList = classroomList;
     }
 
+    public MyCircularDoublyLinkedList<Parent> getParentList() {
+        return parentList;
+    }
+
+    public void setParentList(MyCircularDoublyLinkedList<Parent> parentList) {
+        this.parentList = parentList;
+    }
+
+    public MyCircularDoublyLinkedList<Device> getDeviceList() {
+        return deviceList;
+    }
+
+    public void setDeviceList(MyCircularDoublyLinkedList<Device> deviceList) {
+        this.deviceList = deviceList;
+    }
+
 
     public void addTeacher(Teacher teacher) {
         this.teacherList.add(teacher);
@@ -69,5 +86,11 @@ public class School {
         this.classroomList.add(classroom);
     }
 
+    public void addParent(Parent parent) {
+        this.parentList.add(parent);
+    }
 
+    public void addDevice(Device device) {
+        this.deviceList.add(device);
+    }
 }

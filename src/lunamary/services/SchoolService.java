@@ -1,7 +1,6 @@
 package lunamary.services;
 
-import lunamary.modelPerson.Director;
-import lunamary.modelPerson.Teacher;
+import lunamary.modelPerson.*;
 import lunamary.modelSchool.Classroom;
 import lunamary.modelSchool.School;
 import lunamary.modelSchool.Subject;
@@ -34,6 +33,19 @@ public class SchoolService {
         school.addClassroom(classroom);
     }
 
+    public static void registerParent(String name, String lastName, int ci) {
+        Parent parent = new Parent(name, lastName, ci);
+        this.school.addParent(parent);
+
+    }
+
+    public static void registerDevice(String type, String identifier, String name, String lastname, int ci) {
+        Parent parent = CommonService.getParent(school, ci);
+        DeviceService deviceService = new DeviceService();
+        Device device = deviceService.createDevice(type, identifier, parent);
+        school.addDevice(device);
+    }
+
 
     public static void registerTeacher(String name, String lastname, int ci) {
         TeacherService teacherService = new TeacherService();
@@ -58,10 +70,13 @@ public class SchoolService {
 
     }
 
-    public static void registerStudent(String idClassroom, String name, String lastName, int ci, String nameParen,
+    public static void registerStudent(String codeClassroom, String name, String lastName, int ci, String nameParent,
                                        String lastNameParent, int ciParent, String typeDevice1, String identifier1, String typeDevice2, String identifier2) {
-        StudentService studentService = new StudentService();
 
+        Classroom classroom = CommonService.getClassroom(school, codeClassroom);
+        StudentService studentService = new StudentService();
+        studentService.createStudent("Mary", "Luna", 300);
+        ParentService.createParent(nameParent, lastNameParent, ciParent, typeDevice1, typeDevice1, typeDevice2, )
 
 
 

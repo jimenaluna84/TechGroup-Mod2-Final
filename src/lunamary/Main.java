@@ -56,13 +56,33 @@ public class Main {
         SchoolService schoolService = new SchoolService();
         schoolService.registerSchool("Edmundo Bojanowski", "Pacata Alta Zona Norte");
         schoolService.registerDirector("Carlos", "Torres", 100);
-        SchoolService.registerClassrooms("1A", "Lower secondary education");
-        SchoolService.registerClassrooms("2A", "Upper secondary education");
-        SchoolService.registerClassrooms("3A", "Post-secondary non-tertiary education");
-        SchoolService.registerTeacher("Profesor1A", "Girafales1A", 200);
-        SchoolService.registerTeacher("Profesor2A", "Girafales2A", 201);
-        SchoolService.registerTeacher("Profesor3A", "Girafales3A", 202);
-        schoolService.registerSubject("Matematics", "1A", 200);
+
+        SchoolService.registerClassroom("1A", "Bottom Junior");
+        SchoolService.registerClassroom("2A", "2nd Junior");
+        SchoolService.registerClassroom("3A", "3rd Junior");
+
+        SchoolService.registerTeacher("Profesor", "English", 200);
+        SchoolService.registerTeacher("Profesor", "Spanish", 201);
+        SchoolService.registerTeacher("Profesor", "Germany", 202);
+
+        schoolService.registerSubject("English", "1A", 200);
+        schoolService.registerSubject("English", "2A", 200);
+        schoolService.registerSubject("English", "3A", 200);
+
+        schoolService.registerSubject("Spanish", "1A", 201);
+        schoolService.registerSubject("Spanish", "2A", 201);
+        schoolService.registerSubject("Spanish", "3A", 201);
+
+        schoolService.registerSubject("Germany", "1A", 202);
+        schoolService.registerSubject("Germany", "2A", 202);
+        schoolService.registerSubject("Germany", "3A", 202);
+
+        schoolService.registerAverageClassroom("1A", 100, 51);
+        schoolService.registerAverageClassroom("2A", 100, 51);
+        schoolService.registerAverageClassroom("3A", 100, 51);
+
+
+
 
 
     }

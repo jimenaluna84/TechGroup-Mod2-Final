@@ -17,15 +17,9 @@ public class DirectorService {
         return director;
     }
 
-    public void assignAverage(List<Classroom> classroom, String year, Integer averageExpelled, Integer averagescholarship, String name) {
-        for (Classroom var : classroom) {
-            if (name.equals(var.getName())) {
-                var.setMinimumAverageApprobation(averageExpelled);
-                var.setAverageScholarshipGrade(averagescholarship);
-            }
-
-        }
-
+    public void assignAverage(Classroom classroom, int  averageScholarshipGrade, int minimumAverageApprobation) {
+        classroom.setMinimumAverageApprobation(averageScholarshipGrade);
+        classroom.setAverageScholarshipGrade(minimumAverageApprobation);
 
     }
 }

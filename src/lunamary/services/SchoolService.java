@@ -10,6 +10,7 @@ import lunamary.modelSchool.Subject;
 public class SchoolService {
 
     private static School school;
+    private static Director director;
 
 
     public SchoolService() {
@@ -22,22 +23,22 @@ public class SchoolService {
 
     public void registerDirector(String name, String lastname, int ci) {
         DirectorService directorService = new DirectorService();
-        Director director = directorService.createDirector(name, lastname, ci);
+        director = directorService.createDirector(name, lastname, ci);
         school.setDirector(director);
 
     }
 
-    public static void registerClassrooms(String id, String name) {
+    public static void registerClassroom(String id, String name) {
         ClassroomService classroomService = new ClassroomService();
         Classroom classroom = classroomService.crateClassroom(id, name);
         school.addClassroom(classroom);
     }
 
+
     public static void registerTeacher(String name, String lastname, int ci) {
         TeacherService teacherService = new TeacherService();
         Teacher teacher = teacherService.createTeacher(name, lastname, ci);
         school.addTeacher(teacher);
-
     }
 
     public static void registerSubject(String nameSubject, String codeClassroom, int ciTeacher) {
@@ -47,6 +48,21 @@ public class SchoolService {
         Teacher teacher = CommonService.getTeacher(school, ciTeacher);
         subjectService.setTeacher(subject, teacher);
         classroom.addSubject(subject);
+
+    }
+
+    public static void registerAverageClassroom(String codeClassroom, int averageScholarshipGrade, int minimumAverageApprobation) {
+        Classroom classroom = CommonService.getClassroom(school, codeClassroom);
+        DirectorService directorService = new DirectorService();
+        directorService.assignAverage(classroom, averageScholarshipGrade, minimumAverageApprobation);
+
+    }
+
+    public static void registerStudent(String idClassroom, String name, String lastName, int ci, String nameParen,
+                                       String lastNameParent, int ciParent, String typeDevice1, String identifier1, String typeDevice2, String identifier2) {
+
+        StudentService studentService = new StudentService();
+
 
 
     }

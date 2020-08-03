@@ -1,27 +1,22 @@
 package lunamary.modelSchool;
 
-import lunamary.services.SubjectObservable;
-
-public class Grade extends SubjectObservable {
+public class Grade {
 
 
     private int grade;
     private String description;
 
-    public Grade() {
-        super();
-
+    public Grade(int grade, String description) {
+        this.grade = grade;
+        this.description = description;
     }
-
 
     public int getGrade() {
         return grade;
     }
 
     public void setGrade(int grade) {
-
         this.grade = grade;
-
     }
 
     public String getDescription() {
@@ -31,4 +26,6 @@ public class Grade extends SubjectObservable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }

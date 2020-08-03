@@ -2,9 +2,11 @@ package lunamary.services;
 
 import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
 import lunamary.modelPerson.Parent;
+import lunamary.modelPerson.Student;
 import lunamary.modelPerson.Teacher;
 import lunamary.modelSchool.Classroom;
 import lunamary.modelSchool.School;
+import lunamary.modelSchool.Subject;
 
 public class CommonService {
 
@@ -58,5 +60,31 @@ public class CommonService {
         return parent;
     }
 
+
+    public static Student getStudent(Classroom classroom, int ciStudent) {
+        Student student = null;
+        MyCircularDoublyLinkedList<Student> elements = classroom.getStudentList();
+        for (int i = 0; i < elements.size(); i++) {
+            Student element = elements.get(i);
+            if (element.getCi() == (ciStudent)) {
+                student = element;
+            }
+
+        }
+        return student;
+    }
+
+    public static Subject getSubject(Classroom classroom, String nameSubject) {
+        Subject subject = null;
+        MyCircularDoublyLinkedList<Subject> elements = classroom.getSubjectList();
+        for (int i = 0; i < elements.size(); i++) {
+            Subject element = elements.get(i);
+            if (element.getName() == (nameSubject)) {
+                subject = element;
+            }
+
+        }
+        return subject;
+    }
 
 }

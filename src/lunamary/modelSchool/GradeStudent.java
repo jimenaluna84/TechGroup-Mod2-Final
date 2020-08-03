@@ -3,19 +3,25 @@
 package lunamary.modelSchool;
 
 import lunamary.modelPerson.Student;
+import lunamary.modelPerson.Teacher;
 
 import java.util.Date;
 import java.util.List;
 
 public class GradeStudent {
+
+    private Teacher teacher;
     private List<Grade> gradeList;
     private Student student;
     private String year;
+    private Subject subject;
 
-    public GradeStudent(List<Grade> gradeList, Student student, String year) {
+    public GradeStudent(List<Grade> gradeList, Student student, String year, Subject subject, Teacher teacher) {
         this.gradeList = gradeList;
         this.student = student;
         this.year = year;
+        this.subject = subject;
+        this.teacher = teacher;
     }
 
     public List<Grade> getGradeList() {
@@ -33,4 +39,29 @@ public class GradeStudent {
     public void setStudent(Student student) {
         this.student = student;
     }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
 }

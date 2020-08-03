@@ -1,10 +1,9 @@
 package lunamary.services;
 
 import lunamary.modelPerson.*;
-import lunamary.modelSchool.Classroom;
-import lunamary.modelSchool.School;
-import lunamary.modelSchool.Subject;
-;
+import lunamary.modelSchool.*;
+;import java.util.ArrayList;
+import java.util.List;
 
 public class SchoolService {
 
@@ -16,8 +15,9 @@ public class SchoolService {
 
     }
 
-    public void registerSchool(String name, String address) {
-        school = new School(name, address);
+    public School createSchool(String name, String address) {
+        School school = new School(name, address);
+        return school;
     }
 
     public void registerDirector(String name, String lastname, int ci) {
@@ -92,6 +92,24 @@ public class SchoolService {
 
     }
 
+    public void assignGradeStudent(String codeClassroom, int ciTeacher, int grade1, String description1, int grade2, String description2, int ciStudent, String nameSubject, String year) {
+
+        Classroom classroom = CommonService.getClassroom(school, codeClassroom);
+        GradeService gradeService = new GradeService();
+        Grade first_test = gradeService.createGrade(grade1, description1);
+        Grade second_test = gradeService.createGrade(grade2, description2);
+        List<Grade> grades = new ArrayList<>();
+        grades.add(first_test);
+        grades.add(second_test);
+        Teacher teacher = CommonService.getTeacher(school, ciTeacher);
+        Student student = CommonService.getStudent(classroom, ciStudent);
+        Subject subject = CommonService.getSubject(classroom, nameSubject);
+        TeacherService teacherService = new TeacherService();
+        GradeStudent gradeStudent = teacherService.createGradeStudent(teacher, student, subject, year, grades);
+        school.addGradeStudent(gradeStudent);
+
+
+    }
 
 }
 

@@ -6,7 +6,7 @@ import lunamary.modelPerson.Person;
 import lunamary.modelSchool.Classroom;
 
 
-public class DeviceService {
+public class DeviceService implements IObserver {
 
     public DeviceService() {
 
@@ -17,9 +17,17 @@ public class DeviceService {
         return device;
     }
 
-    public void assignAverage(Classroom classroom, int averageScholarshipGrade, int minimumAverageApprobation) {
-        classroom.setMinimumAverageApprobation(averageScholarshipGrade);
-        classroom.setAverageScholarshipGrade(minimumAverageApprobation);
+
+    @Override
+    public void sendNotification() {
+//        System.out.println("***********Notification******* " + "\n"
+//                + "Device receiver: " + receiversNotification.getDeviceList().get(0).getType() + " " + receiversNotification.getDeviceList().get(0).getIdentifier() + "\n"
+//                + "Dear Mis/ Mister " + receiversNotification.getName() + " " + receiversNotification.getName() + "\n"
+//                + "This notification is to notify that your son / daugter  has been accomplishing the expectations required.\n"
+//                + "I would like to get a meeting to discuss about it." + "\n"
+//                + "Best Regards \n"
+//                + senderNotification.getName() + senderNotification.getLastname());
+
 
     }
 }

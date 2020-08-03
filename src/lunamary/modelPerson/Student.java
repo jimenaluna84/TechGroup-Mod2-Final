@@ -1,8 +1,6 @@
 package lunamary.modelPerson;
 
-import java.util.List;
-
-public class Student extends Person {
+public class Student extends AbstractPerson {
 
 
     private Parent parent;

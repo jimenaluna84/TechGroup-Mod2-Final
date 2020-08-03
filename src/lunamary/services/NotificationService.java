@@ -1,12 +1,12 @@
 package lunamary.services;
 
-import lunamary.modelPerson.Person;
+import lunamary.modelPerson.AbstractPerson;
 
 public class NotificationService {
-    private final Person senderNotification;
-    private final Person receiversNotification;
+    private final AbstractPerson senderNotification;
+    private final AbstractPerson receiversNotification;
 
-    public NotificationService(Person to, Person from) {
+    public NotificationService(AbstractPerson to, AbstractPerson from) {
         this.senderNotification = from;
         this.receiversNotification = to;
     }

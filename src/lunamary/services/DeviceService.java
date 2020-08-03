@@ -1,9 +1,7 @@
 package lunamary.services;
 
 import lunamary.modelPerson.Device;
-import lunamary.modelPerson.Director;
-import lunamary.modelPerson.Person;
-import lunamary.modelSchool.Classroom;
+import lunamary.modelPerson.AbstractPerson;
 
 
 public class DeviceService implements IObserver {
@@ -12,7 +10,7 @@ public class DeviceService implements IObserver {
 
     }
 
-    public Device createDevice(String type, String identifier, Person ownerDevice) {
+    public Device createDevice(String type, String identifier, AbstractPerson ownerDevice) {
         Device device = new Device(type, identifier, ownerDevice);
         return device;
     }

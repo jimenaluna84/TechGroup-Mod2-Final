@@ -1,8 +1,6 @@
 package lunamary.modelPerson;
 
-import java.util.List;
-
-public class Parent extends Person{
+public class Parent extends AbstractPerson {
 
     public Parent(String name, String lastName, int ci) {
         super(name, lastName, ci);

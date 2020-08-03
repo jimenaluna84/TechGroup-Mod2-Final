@@ -1,13 +1,13 @@
 package lunamary.modelPerson;
 
-public abstract class Person {
+public abstract class AbstractPerson {
 
     private String name;
     private String lastName;
     private int ci;
 
 
-    public Person(String name, String lastName, int age) {
+    public AbstractPerson(String name, String lastName, int age) {
         this.name = name;
         this.lastName = lastName;
         this.ci = age;

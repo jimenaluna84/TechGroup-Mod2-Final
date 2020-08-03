@@ -4,10 +4,10 @@ public class Device {
 
     private String type;
     private String identifier;
-    private Person owner;
+    private AbstractPerson owner;
 
 
-    public Device(String type, String identifier, Person owner) {
+    public Device(String type, String identifier, AbstractPerson owner) {
         this.type = type;
         this.identifier = identifier;
         this.owner = owner;
@@ -30,11 +30,11 @@ public class Device {
         this.identifier = identifier;
     }
 
-    public Person getOwner() {
+    public AbstractPerson getOwner() {
         return owner;
     }
 
-    public void setOwner(Person owner) {
+    public void setOwner(AbstractPerson owner) {
         this.owner = owner;
     }
 

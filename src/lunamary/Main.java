@@ -94,8 +94,16 @@ public class Main {
 
 
         schoolService.assignGradeStudent("1A", 200, 50, "First Test", 40, "Second Test", 500, "English1", "2020");
+        schoolService.assignGradeStudent("1A", 201, 100, "First Test", 100, "Second Test", 501, "Spanish1", "2020");
+        schoolService.assignGradeStudent("1A", 202, 100, "First Test", 100, "Second Test", 502, "Germany1", "2020");
 
+        schoolService.assignGradeStudent("2A", 200, 50, "First Test", 50, "Second Test", 503, "English1", "2020");
+        schoolService.assignGradeStudent("2A", 201, 100, "First Test", 100, "Second Test", 504, "Spanish2", "2020");
+        schoolService.assignGradeStudent("2A", 202, 100, "First Test", 100, "Second Test", 505, "Germany2", "2020");
 
+        schoolService.assignGradeStudent("3A", 200, 50, "First Test", 50, "Second Test", 506, "English1", "2020");
+        schoolService.assignGradeStudent("3A", 201, 100, "First Test", 100, "Second Test", 507, "Spanish3", "2020");
+        schoolService.assignGradeStudent("3A", 202, 100, "First Test", 100, "Second Test", 508, "Germany3", "2020");
 
 
 

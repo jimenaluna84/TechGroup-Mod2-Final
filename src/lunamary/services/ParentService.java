@@ -14,12 +14,7 @@ public class ParentService {
     }
 
     public Parent createParent(String name, String lastname, int ci) {
-        Device device = new Device("Celular", "738-58951");
-        Device device1 = new Device("Email", "parent@gmail.com");
-        LinkedList<Device> devices = new LinkedList<>();
-        devices.add(device);
-        devices.add(device1);
-        Parent parent = new Parent(name, lastname, ci, devices);
+        Parent parent = new Parent(name, lastname, ci);
         return parent;
     }
 

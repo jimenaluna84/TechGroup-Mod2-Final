@@ -13,6 +13,8 @@ public class School {
     private MyCircularDoublyLinkedList<Classroom> classroomList;
     private MyCircularDoublyLinkedList<Parent> parentList;
     private MyCircularDoublyLinkedList<Device> deviceList;
+
+
     private MyCircularDoublyLinkedList<GradeStudent> gradeStudentList;
 
 
@@ -71,6 +73,14 @@ public class School {
 
     public void setDeviceList(MyCircularDoublyLinkedList<Device> deviceList) {
         this.deviceList = deviceList;
+    }
+
+    public MyCircularDoublyLinkedList<GradeStudent> getGradeStudentList() {
+        return gradeStudentList;
+    }
+
+    public void setGradeStudentList(MyCircularDoublyLinkedList<GradeStudent> gradeStudentList) {
+        this.gradeStudentList = gradeStudentList;
     }
 
 

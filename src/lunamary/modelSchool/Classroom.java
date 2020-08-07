@@ -17,6 +17,7 @@ public class Classroom {
         this.code = id;
         this.name = name;
         this.subjectList = new MyCircularDoublyLinkedList<>();
+        this.studentList = new MyCircularDoublyLinkedList<>();
     }
 
     public MyCircularDoublyLinkedList<Student> getStudentList() {

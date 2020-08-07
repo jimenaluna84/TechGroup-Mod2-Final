@@ -1,5 +1,6 @@
 package lunamary.services;
 
+import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
 import lunamary.modelPerson.*;
 import lunamary.modelSchool.*;
 ;import java.util.ArrayList;
@@ -8,21 +9,21 @@ import java.util.List;
 public class SchoolService {
 
     private static School school;
-    private static Director director;
 
 
     public SchoolService() {
 
+
     }
 
     public School createSchool(String name, String address) {
-        School school = new School(name, address);
+        school = new School(name, address);
         return school;
     }
 
     public void registerDirector(String name, String lastname, int ci) {
         DirectorService directorService = new DirectorService();
-        director = directorService.createDirector(name, lastname, ci);
+        Director director = directorService.createDirector(name, lastname, ci);
         school.setDirector(director);
 
     }
@@ -31,6 +32,8 @@ public class SchoolService {
         ClassroomService classroomService = new ClassroomService();
         Classroom classroom = classroomService.crateClassroom(id, name);
         school.addClassroom(classroom);
+        System.out.println(classroom.getName().toString());
+
     }
 
     public static void registerParent(String name, String lastName, int ci) {
@@ -52,6 +55,7 @@ public class SchoolService {
         TeacherService teacherService = new TeacherService();
         Teacher teacher = teacherService.createTeacher(name, lastname, ci);
         school.addTeacher(teacher);
+
     }
 
     public static void registerSubject(String nameSubject, String codeClassroom, int ciTeacher) {
@@ -61,6 +65,8 @@ public class SchoolService {
         Teacher teacher = CommonService.getTeacher(school, ciTeacher);
         subjectService.setTeacher(subject, teacher);
         classroom.addSubject(subject);
+        System.out.println(subject.getName().toString());
+
 
     }
 

@@ -8,9 +8,9 @@ public class DeviceService {
     private Device device;
     private AbstractPerson person;
 
-    public DeviceService(AbstractPerson person, Device device) {
-        this.device = device;
-        this.person = person;
+
+    public DeviceService() {
+
     }
 
     public Device createDevice(String type, String identifier, AbstractPerson ownerDevice) {
@@ -18,13 +18,5 @@ public class DeviceService {
         return newDevice;
     }
 
-
-    public Device getDevice() {
-        return device;
-    }
-
-    public void setDevice(Device device) {
-        this.device = device;
-    }
 
 }

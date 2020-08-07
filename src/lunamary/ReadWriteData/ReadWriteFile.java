@@ -1,12 +1,12 @@
-package lunamary.readData;
+package lunamary.ReadWriteData;
 
 import datastructures.arraylist.MyArrayList;
 import datastructures.hashmap.MyHashMap;
 
-public abstract class ReadWritedFile {
+public abstract class ReadWriteFile {
     protected String path;
 
-    public ReadWritedFile(String path) {
+    public ReadWriteFile(String path) {
         this.path = path;
     }
 

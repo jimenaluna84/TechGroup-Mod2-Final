@@ -7,49 +7,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sn = new Scanner(System.in);
-        boolean out = false;
-        int opcion;
-        while (!out) {
-            System.out.println("1. Register New School");
-            System.out.println("2. Register New Classroom");
-            System.out.println("3. Register New Subject");
-            System.out.println("4. Register Student");
-            System.out.println("5. Register Director");
-            System.out.println("6. Register Teacher");
-            System.out.println("7. Director set Average by Course");
-            System.out.println("8. Teacher add Grade Student");
-            System.out.println("9. Teacher Import Grade");
-            System.out.println("10. Director generate General Report");
-            System.out.println("11. Director generate General Report");
 
-
-            try {
-
-                System.out.println("Write Option");
-                opcion = sn.nextInt();
-
-                switch (opcion) {
-                    case 1:
-
-                        break;
-                    case 2:
-
-                        break;
-                    case 3:
-
-                        break;
-                    case 12:
-                        out = true;
-                        break;
-                    default:
-                        System.out.println("Tried again");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Should be enter number");
-                sn.next();
-            }
-        }
 
 
         SchoolService schoolService = new SchoolService();
@@ -104,7 +62,9 @@ public class Main {
         schoolService.assignGradeStudent("3A", 200, 50, "First Test", 50, "Second Test", 506, "English1", "2020");
         schoolService.assignGradeStudent("3A", 201, 100, "First Test", 100, "Second Test", 507, "Spanish3", "2020");
         schoolService.assignGradeStudent("3A", 202, 100, "First Test", 100, "Second Test", 508, "Germany3", "2020");
+        System.out.println("Aqui");
 
+        schoolService.importGradeFromFile("src/lunamary/ReadWriteData/file.json");
 
 
     }

@@ -1,8 +1,9 @@
-package lunamary.readData;
+package lunamary.ReadWriteData;
 
 public class AbstractFactory {
 
-    public ReadWritedFile createFile(String path) {
+    public ReadWriteFile createFile(String path) {
+        System.out.println(path);
         String[] pathSplit = path.split("\\.");
         String extension = pathSplit[pathSplit.length - 1];
         if (extension.toUpperCase().equals("CSV")) {
@@ -12,6 +13,7 @@ public class AbstractFactory {
         } else {
             return null;
         }
+
     }
 }
 

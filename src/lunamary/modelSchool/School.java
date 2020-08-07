@@ -13,8 +13,6 @@ public class School {
     private MyCircularDoublyLinkedList<Classroom> classroomList;
     private MyCircularDoublyLinkedList<Parent> parentList;
     private MyCircularDoublyLinkedList<Device> deviceList;
-
-
     private MyCircularDoublyLinkedList<GradeStudent> gradeStudentList;
 
 

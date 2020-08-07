@@ -1,9 +1,9 @@
-package lunamary.readData;
+package lunamary.ReadWriteData;
 
 import datastructures.arraylist.MyArrayList;
 import datastructures.hashmap.MyHashMap;
 
-public class ReadWriteCSV extends ReadWritedFile {
+public class ReadWriteCSV extends ReadWriteFile {
 
     public ReadWriteCSV(String path) {
         super(path);

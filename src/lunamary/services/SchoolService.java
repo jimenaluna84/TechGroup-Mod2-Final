@@ -1,14 +1,20 @@
 package lunamary.services;
 
-import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
+import datastructures.arraylist.MyArrayList;
+import datastructures.hashmap.MyHashMap;
+import lunamary.ReadWriteData.AbstractFactory;
+import lunamary.ReadWriteData.ReadWriteFile;
 import lunamary.modelPerson.*;
 import lunamary.modelSchool.*;
-;import java.util.ArrayList;
+;import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class SchoolService {
 
     private static School school;
+    private AbstractFactory factory;
 
 
     public SchoolService() {
@@ -113,9 +119,56 @@ public class SchoolService {
         TeacherService teacherService = new TeacherService();
         GradeStudent gradeStudent = teacherService.createGradeStudent(teacher, student, subject, year, grades);
         school.addGradeStudent(gradeStudent);
+        System.out.println(school.getGradeStudentList().size());
 
 
     }
+
+    public boolean importGradeFromFile(String pathFile) {
+        boolean isImportSucess = false;
+        MyArrayList<MyHashMap<String, String>> data = importDataFromFile(pathFile);
+
+        if (!data.isEmpty()) {
+            for (int i = 0; i < data.size(); i++) {
+                MyHashMap<String, String> entry = data.get(i);
+
+                int ciTeacher = Integer.parseInt(entry.get("ciTeacher"));
+                String nameClassroom = entry.get("nameClassroom");
+                String subject = entry.get("Subject");
+                int ciStudent = Integer.parseInt(entry.get("ciStudent"));
+                int gradeSemester1 = Integer.parseInt(entry.get("gradeSemester1"));
+                int gradeSemester2 = Integer.parseInt(entry.get("gradeSemester2"));
+                String gestion = entry.get("gestion");
+                this.assignGradeStudent(nameClassroom, ciTeacher, gradeSemester1, "", gradeSemester2, "", ciStudent, subject, gestion);
+
+            }
+            isImportSucess = true;
+        }
+        return isImportSucess;
+
+    }
+
+
+    public MyArrayList<MyHashMap<String, String>> importDataFromFile(String path) {
+        factory = new AbstractFactory();
+        ReadWriteFile file = factory.createFile(path);
+        if (file == null) {
+            return null;
+        } else {
+            return file.readLines();
+        }
+    }
+
+    public boolean exportDataToFile(String path, MyArrayList<MyHashMap<String, String>> values) {
+        factory = new AbstractFactory();
+        ReadWriteFile file = factory.createFile(path);
+        if (file == null) {
+            return false;
+        } else {
+            return file.writeEntries(values);
+        }
+    }
+
 
 }
 

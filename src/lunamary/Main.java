@@ -9,7 +9,6 @@ public class Main {
     public static void main(String[] args) {
 
 
-
         SchoolService schoolService = new SchoolService();
         schoolService.createSchool("Edmundo Bojanowski", "Pacata Alta Zona Norte");
         schoolService.registerDirector("Carlos", "Torres", 100);
@@ -62,9 +61,10 @@ public class Main {
         schoolService.assignGradeStudent("3A", 200, 50, "First Test", 50, "Second Test", 506, "English1", "2020");
         schoolService.assignGradeStudent("3A", 201, 100, "First Test", 100, "Second Test", 507, "Spanish3", "2020");
         schoolService.assignGradeStudent("3A", 202, 100, "First Test", 100, "Second Test", 508, "Germany3", "2020");
-        System.out.println("Aqui");
+
 
         schoolService.importGradeFromFile("src/lunamary/ReadWriteData/file.json");
+        schoolService.importGradeFromFile("src/lunamary/ReadWriteData/file.csv");
 
 
     }

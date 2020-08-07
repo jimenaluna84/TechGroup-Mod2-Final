@@ -1,7 +1,10 @@
 package lunamary.ReadWriteData;
 
+import com.opencsv.CSVReader;
 import datastructures.arraylist.MyArrayList;
 import datastructures.hashmap.MyHashMap;
+
+import java.io.FileReader;
 
 public class ReadWriteCSV extends ReadWriteFile {
 
@@ -11,7 +14,25 @@ public class ReadWriteCSV extends ReadWriteFile {
 
     @Override
     public MyArrayList<MyHashMap<String, String>> readLines() {
-        return null;
+        MyArrayList<MyHashMap<String, String>> entries = new MyArrayList<>();
+        CSVReader csvReader;
+        try {
+            csvReader = new CSVReader(new FileReader(this.path));
+            String[] headers = csvReader.readNext();
+            String[] line = csvReader.readNext();
+            while (line != null) {
+                MyHashMap<String, String> entry = new MyHashMap<>();
+                for (int i = 0; i < headers.length; i++) {
+                    entry.put(headers[i], line[i]);
+                }
+                entries.add(entry);
+                line = csvReader.readNext();
+            }
+        } catch (Exception exception) {
+            System.out.println(exception);
+        }
+        return entries;
+
     }
 
     @Override

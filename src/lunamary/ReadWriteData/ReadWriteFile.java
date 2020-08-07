@@ -3,6 +3,8 @@ package lunamary.ReadWriteData;
 import datastructures.arraylist.MyArrayList;
 import datastructures.hashmap.MyHashMap;
 
+import java.io.FileNotFoundException;
+
 public abstract class ReadWriteFile {
     protected String path;
 

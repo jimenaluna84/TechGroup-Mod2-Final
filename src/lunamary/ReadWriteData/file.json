@@ -6,7 +6,7 @@
     "Subject": "English",
     "gradeSemester1": 50,
     "gradeSemester2": 50,
-    "gestion": "2020"
+    "year": "2020"
   },
   {
     "ciTeacher": "300",
@@ -15,6 +15,6 @@
     "Subject": "English",
     "gradeSemester1": 50,
     "gradeSemester2": 50,
-    "gestion": "2020"
+    "year": "2020"
   }
 ]

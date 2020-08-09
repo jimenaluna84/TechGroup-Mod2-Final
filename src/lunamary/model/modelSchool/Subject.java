@@ -1,12 +1,11 @@
-package lunamary.modelSchool;
+package lunamary.model.modelSchool;
 
-import lunamary.modelPerson.Director;
-import lunamary.modelPerson.Student;
-import lunamary.modelPerson.Teacher;
+import lunamary.model.BaseModel;
+import lunamary.model.modelPerson.Director;
+import lunamary.model.modelPerson.Student;
+import lunamary.model.modelPerson.Teacher;
 
-import java.util.List;
-
-public class Subject {
+public class Subject extends BaseModel {
     private String name;
     private Teacher teacher;
 

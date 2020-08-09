@@ -1,14 +1,14 @@
 
 
-package lunamary.modelSchool;
+package lunamary.model.modelSchool;
 
-import lunamary.modelPerson.Student;
-import lunamary.modelPerson.Teacher;
+import lunamary.model.BaseModel;
+import lunamary.model.modelPerson.Student;
+import lunamary.model.modelPerson.Teacher;
 
-import java.util.Date;
 import java.util.List;
 
-public class GradeStudent {
+public class GradeStudent extends BaseModel {
 
     private Teacher teacher;
     private List<Grade> gradeList;

@@ -1,28 +1,18 @@
 package lunamary.services;
 
 import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
-import lunamary.modelPerson.Parent;
-import lunamary.modelPerson.Student;
-import lunamary.modelPerson.Teacher;
-import lunamary.modelSchool.Classroom;
-import lunamary.modelSchool.School;
-import lunamary.modelSchool.Subject;
+import lunamary.model.modelPerson.Parent;
+import lunamary.model.modelPerson.Student;
+import lunamary.model.modelPerson.Teacher;
+import lunamary.model.modelSchool.Classroom;
+import lunamary.model.modelSchool.Subject;
 
-public class CommonService {
-
-
-    public CommonService() {
-
-    }
-
-    public void print(String text) {
-        System.out.print(text);
-    }
+public class SearchService {
 
 
-    public static Classroom getClassroom(School school, String codeClassroom) {
+    public static Classroom getClassroom(String codeClassroom) {
         Classroom classroom = null;
-        MyCircularDoublyLinkedList<Classroom> elements = school.getClassroomList();
+        MyCircularDoublyLinkedList<Classroom> elements = SchoolService.getSchool().getClassroomList();
 
         for (int i = 0; i < elements.size(); i++) {
             Classroom element = elements.get(i);
@@ -34,9 +24,9 @@ public class CommonService {
         return classroom;
     }
 
-    public static Teacher getTeacher(School school, int ciTeacher) {
+    public static Teacher getTeacher(int ciTeacher) {
         Teacher teacher = null;
-        MyCircularDoublyLinkedList<Teacher> elements = school.getTeacherList();
+        MyCircularDoublyLinkedList<Teacher> elements = SchoolService.getSchool().getTeacherList();
         for (int i = 0; i < elements.size(); i++) {
             Teacher element = elements.get(i);
             if (element.getCi() == (ciTeacher)) {
@@ -47,9 +37,9 @@ public class CommonService {
         return teacher;
     }
 
-    public static Parent getParent(School school, int ciParent) {
+    public static Parent getParent(int ciParent) {
         Parent parent = null;
-        MyCircularDoublyLinkedList<Parent> elements = school.getParentList();
+        MyCircularDoublyLinkedList<Parent> elements = SchoolService.getSchool().getParentList();
         for (int i = 0; i < elements.size(); i++) {
             Parent element = elements.get(i);
             if (element.getCi() == (ciParent)) {

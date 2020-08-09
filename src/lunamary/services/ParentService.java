@@ -1,10 +1,8 @@
 package lunamary.services;
 
-import lunamary.modelPerson.Device;
-import lunamary.modelPerson.Parent;
-import lunamary.modelPerson.Student;
-
-import java.util.LinkedList;
+import lunamary.model.modelPerson.Device;
+import lunamary.model.modelPerson.Parent;
+import lunamary.model.modelPerson.Student;
 
 
 public class ParentService {

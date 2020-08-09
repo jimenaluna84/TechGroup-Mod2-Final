@@ -1,11 +1,9 @@
 package lunamary.services;
 
-import lunamary.modelPerson.Director;
-import lunamary.modelPerson.Teacher;
-import lunamary.modelSchool.Classroom;
-import lunamary.modelSchool.Subject;
-
-import java.util.List;
+import lunamary.model.modelPerson.Director;
+import lunamary.model.modelPerson.Teacher;
+import lunamary.model.modelSchool.Classroom;
+import lunamary.model.modelSchool.Subject;
 
 
 public class SubjectService {

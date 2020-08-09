@@ -1,4 +1,4 @@
-package lunamary.ReadWriteData;
+package lunamary.readWriteData;
 
 import datastructures.arraylist.MyArrayList;
 import datastructures.hashmap.MyHashMap;
@@ -34,7 +34,7 @@ public class ReadWriteJSON extends ReadWriteFile {
                 records.add(entry);
             }
         } catch (Exception exception) {
-            System.out.println(exception);
+            exception.printStackTrace();
         }
 
         return records;

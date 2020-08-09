@@ -1,9 +1,10 @@
 package lunamary.services;
 
-import lunamary.modelPerson.Director;
-import lunamary.modelPerson.Parent;
-import lunamary.modelPerson.Student;
-import lunamary.modelSchool.Classroom;
+import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
+import lunamary.model.modelPerson.Director;
+import lunamary.model.modelPerson.Parent;
+import lunamary.model.modelPerson.Student;
+import lunamary.model.modelSchool.Classroom;
 
 
 public class StudentService {
@@ -12,13 +13,13 @@ public class StudentService {
 
     }
 
-    public Student createStudent(String name, String lastname, int ci) {
-        Student student = new Student(name, lastname, ci);
+    public Student createStudent(String name, String lastName, int ci, String gender) {
+        Student student = new Student(name, lastName, ci, gender);
         return student;
     }
 
     public void setParent(Student student, Parent parent) {
-        student.setParent(parent);
+        student.addParent(parent);
     }
 
 

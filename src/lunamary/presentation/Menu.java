@@ -1,4 +1,4 @@
-package lunamary.Presentation;
+package lunamary.presentation;
 
 import lunamary.services.SchoolService;
 
@@ -128,7 +128,8 @@ public class Menu {
         String lastName = scanner.nextLine();
         System.out.print("\t Insert the last CI Headmaster: ");
         int ci = scanner.nextInt();
-        stepAddHeadmaster(headmaster, lastName, (Integer) ci);
+//        stepAddHeadmaster(headmaster, lastName, ci);
+        schoolService.registerDirector(headmaster, lastName, ci);
         System.out.println("================================================= \n");
         selectOption += selectOption + "2";
         menu();
@@ -137,7 +138,7 @@ public class Menu {
     public void stepAddHeadmaster(String headmaster, String lastNameDirector, int ci) {
         try {
             schoolService.registerDirector(headmaster, lastNameDirector, ci);
-            menu();
+
         } catch (Exception e) {
             //  System.out.println("Something went wrong.");
         }

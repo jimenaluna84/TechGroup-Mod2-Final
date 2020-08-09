@@ -1,7 +1,7 @@
 package lunamary.services;
 
-import lunamary.modelPerson.AbstractPerson;
-import lunamary.modelPerson.Device;
+import lunamary.model.modelPerson.AbstractPerson;
+import lunamary.model.modelPerson.Device;
 
 public class NotificationService implements IObserver {
     private final AbstractPerson person;

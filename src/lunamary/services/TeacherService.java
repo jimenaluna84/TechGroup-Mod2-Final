@@ -1,10 +1,10 @@
 package lunamary.services;
 
-import lunamary.modelPerson.Student;
-import lunamary.modelPerson.Teacher;
-import lunamary.modelSchool.Grade;
-import lunamary.modelSchool.GradeStudent;
-import lunamary.modelSchool.Subject;
+import lunamary.model.modelPerson.Student;
+import lunamary.model.modelPerson.Teacher;
+import lunamary.model.modelSchool.Grade;
+import lunamary.model.modelSchool.GradeStudent;
+import lunamary.model.modelSchool.Subject;
 
 import java.util.List;
 

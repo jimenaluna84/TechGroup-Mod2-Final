@@ -1,4 +1,4 @@
-package lunamary.modelPerson;
+package lunamary.model.modelPerson;
 
 public class Parent extends AbstractPerson {
 

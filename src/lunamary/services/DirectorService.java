@@ -1,9 +1,7 @@
 package lunamary.services;
 
-import lunamary.modelPerson.Director;
-import lunamary.modelSchool.Classroom;
-
-import java.util.List;
+import lunamary.model.modelPerson.Director;
+import lunamary.model.modelSchool.Classroom;
 
 
 public class DirectorService {

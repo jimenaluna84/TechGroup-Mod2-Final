@@ -1,16 +1,20 @@
-package lunamary.modelPerson;
+package lunamary.model.modelPerson;
 
-public abstract class AbstractPerson {
+import lunamary.model.BaseModel;
+
+public abstract class AbstractPerson extends BaseModel {
 
     private String name;
     private String lastName;
     private int ci;
+    private String gender;
 
 
-    public AbstractPerson(String name, String lastName, int age) {
+    public AbstractPerson(String name, String lastName, int age, String gender) {
         this.name = name;
         this.lastName = lastName;
         this.ci = age;
+        this.gender = gender;
     }
 
     public String getName() {
@@ -35,6 +39,14 @@ public abstract class AbstractPerson {
 
     public void setCi(int ci) {
         this.ci = ci;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
 

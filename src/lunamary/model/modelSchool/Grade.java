@@ -1,6 +1,8 @@
-package lunamary.modelSchool;
+package lunamary.model.modelSchool;
 
-public class Grade {
+import lunamary.model.BaseModel;
+
+public class Grade  extends BaseModel {
 
 
     private int grade;

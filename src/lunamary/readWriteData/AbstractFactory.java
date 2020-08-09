@@ -1,8 +1,8 @@
-package lunamary.ReadWriteData;
+package lunamary.readWriteData;
 
 public class AbstractFactory {
 
-    public ReadWriteFile createFile(String path) {
+    public static ReadWriteFile createFile(String path) {
         System.out.println(path);
         String[] pathSplit = path.split("\\.");
         String extension = pathSplit[pathSplit.length - 1];

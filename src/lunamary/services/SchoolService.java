@@ -2,31 +2,37 @@ package lunamary.services;
 
 import datastructures.arraylist.MyArrayList;
 import datastructures.hashmap.MyHashMap;
-import lunamary.ReadWriteData.AbstractFactory;
-import lunamary.ReadWriteData.ReadWriteFile;
-import lunamary.modelPerson.*;
-import lunamary.modelSchool.*;
-;import java.io.FileNotFoundException;
-import java.time.LocalDate;
+import lunamary.model.modelPerson.*;
+import lunamary.model.modelSchool.*;
+import lunamary.readWriteData.AbstractFactory;
+import lunamary.readWriteData.ReadWriteFile;
+;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 
 public class SchoolService {
-
+    private static SchoolService schoolService;
     private static School school;
-    private AbstractFactory factory;
 
 
     public SchoolService() {
-
+        this.school = new School();
 
     }
 
-    public School createSchool(String name, String address) {
-        school = new School(name, address);
-        return school;
+    public static SchoolService getSchoolService() {
+        if (schoolService == null) {
+            schoolService = new SchoolService();
+        }
+        return schoolService;
     }
+
+    public static School getSchool() {
+        return schoolService.school;
+    }
+
+
+
 
     public void registerDirector(String name, String lastname, int ci) {
         DirectorService directorService = new DirectorService();
@@ -43,15 +49,24 @@ public class SchoolService {
 
     }
 
-    public static void registerParent(String name, String lastName, int ci) {
-        ParentService parentService = new ParentService();
-        Parent parent = parentService.createParent(name, lastName, ci);
-        school.addParent(parent);
+//    public static void assignParentStudent(String parentId, String StudentId) {
+//        ParentService parentService = new ParentService();
+//        Parent parent = parentService.createParent(name, lastName, ci);
+//        school.addParent(parent);
+//
+//    }
+
+    public static void assignParentStudent(int parentId, int StudentId, String codeClassroom) {
+        Parent parent = SearchService.getParent(parentId);
+        Classroom classroom = SearchService.getClassroom(codeClassroom);
+        Student student = (Student) SearchService.getStudent(classroom, StudentId);
+        StudentService studentService = new StudentService();
+        studentService.setParent(student, parent);
 
     }
 
     public static void registerDevice(String type, String identifier, String name, String lastname, int ci) {
-        Parent parent = CommonService.getParent(school, ci);
+        Parent parent = SearchService.getParent(ci);
         DeviceService deviceService = new DeviceService();
         Device device = deviceService.createDevice(type, identifier, parent);
         school.addDevice(device);
@@ -68,8 +83,8 @@ public class SchoolService {
     public static void registerSubject(String nameSubject, String codeClassroom, int ciTeacher) {
         SubjectService subjectService = new SubjectService();
         Subject subject = subjectService.createSubject(nameSubject);
-        Classroom classroom = CommonService.getClassroom(school, codeClassroom);
-        Teacher teacher = CommonService.getTeacher(school, ciTeacher);
+        Classroom classroom = SearchService.getClassroom(codeClassroom);
+        Teacher teacher = SearchService.getTeacher(ciTeacher);
         subjectService.setTeacher(subject, teacher);
         classroom.addSubject(subject);
         System.out.println(subject.getName().toString());
@@ -78,13 +93,13 @@ public class SchoolService {
     }
 
     public static void registerAverageClassroom(String codeClassroom, int averageScholarshipGrade, int minimumAverageApprobation) {
-        Classroom classroom = CommonService.getClassroom(school, codeClassroom);
+        Classroom classroom = SearchService.getClassroom(codeClassroom);
         DirectorService directorService = new DirectorService();
         directorService.assignAverage(classroom, averageScholarshipGrade, minimumAverageApprobation);
 
     }
 
-    public static void registerStudent(String codeClassroom, String name, String lastName, int ci, String nameParent,
+    public static void registerStudent(String codeClassroom, String name, String lastName, int ci, String gender, String nameParent,
                                        String lastNameParent, int ciParent, String typeDevice1, String identifier1,
                                        String typeDevice2, String identifier2) {
 
@@ -95,9 +110,9 @@ public class SchoolService {
         deviceService.createDevice(typeDevice1, identifier1, parent);
         deviceService.createDevice(typeDevice2, identifier2, parent);
 
-        Classroom classroom = CommonService.getClassroom(school, codeClassroom);
+        Classroom classroom = SearchService.getClassroom(codeClassroom);
         StudentService studentService = new StudentService();
-        Student student = studentService.createStudent(name, lastName, ci);
+        Student student = studentService.createStudent(name, lastName, ci, gender);
         studentService.setParent(student, parent);
         ClassroomService classroomService = new ClassroomService();
         classroomService.setStudent(classroom, student);
@@ -107,20 +122,19 @@ public class SchoolService {
 
     public void assignGradeStudent(String codeClassroom, int ciTeacher, int grade1, String description1, int grade2, String description2, int ciStudent, String nameSubject, String year) {
 
-        Classroom classroom = CommonService.getClassroom(school, codeClassroom);
+        Classroom classroom = SearchService.getClassroom(codeClassroom);
         GradeService gradeService = new GradeService();
         Grade first_test = gradeService.createGrade(grade1, description1);
         Grade second_test = gradeService.createGrade(grade2, description2);
         List<Grade> grades = new ArrayList<>();
         grades.add(first_test);
         grades.add(second_test);
-        Teacher teacher = CommonService.getTeacher(school, ciTeacher);
-        Student student = CommonService.getStudent(classroom, ciStudent);
-        Subject subject = CommonService.getSubject(classroom, nameSubject);
+        Teacher teacher = SearchService.getTeacher(ciTeacher);
+        Student student = SearchService.getStudent(classroom, ciStudent);
+        Subject subject = SearchService.getSubject(classroom, nameSubject);
         TeacherService teacherService = new TeacherService();
         GradeStudent gradeStudent = teacherService.createGradeStudent(teacher, student, subject, year, grades);
         school.addGradeStudent(gradeStudent);
-        System.out.println(school.getGradeStudentList().size());
 
 
     }
@@ -151,8 +165,7 @@ public class SchoolService {
 
 
     public MyArrayList<MyHashMap<String, String>> importDataFromFile(String path) {
-        factory = new AbstractFactory();
-        ReadWriteFile file = factory.createFile(path);
+        ReadWriteFile file = AbstractFactory.createFile(path);
         if (file == null) {
             return null;
         } else {
@@ -161,8 +174,7 @@ public class SchoolService {
     }
 
     public boolean exportDataToFile(String path, MyArrayList<MyHashMap<String, String>> values) {
-        factory = new AbstractFactory();
-        ReadWriteFile file = factory.createFile(path);
+        ReadWriteFile file = AbstractFactory.createFile(path);
         if (file == null) {
             return false;
         } else {
@@ -171,6 +183,10 @@ public class SchoolService {
     }
 
 
+    public void setDataSchool(String name, String address) {
+        getSchool().setName(name);
+        getSchool().setAddress(address);
+    }
 }
 
 

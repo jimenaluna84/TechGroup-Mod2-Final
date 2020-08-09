@@ -1,5 +1,5 @@
 package lunamary.services;
-import lunamary.modelSchool.Grade;
+import lunamary.model.modelSchool.Grade;
 
 
 public class GradeService {

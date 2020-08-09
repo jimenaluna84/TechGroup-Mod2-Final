@@ -1,4 +1,4 @@
-package lunamary.ReadWriteData;
+package lunamary.readWriteData;
 
 import com.opencsv.CSVReader;
 import datastructures.arraylist.MyArrayList;
@@ -29,7 +29,7 @@ public class ReadWriteCSV extends ReadWriteFile {
                 line = csvReader.readNext();
             }
         } catch (Exception exception) {
-            System.out.println(exception);
+            exception.printStackTrace();
         }
         return entries;
 

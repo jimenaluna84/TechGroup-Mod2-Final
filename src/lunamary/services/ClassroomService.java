@@ -1,7 +1,7 @@
 package lunamary.services;
 
-import lunamary.modelPerson.Student;
-import lunamary.modelSchool.Classroom;
+import lunamary.model.modelPerson.Student;
+import lunamary.model.modelSchool.Classroom;
 
 public class ClassroomService {
 

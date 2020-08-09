@@ -1,9 +1,13 @@
-package lunamary.modelSchool;
+package lunamary.model.modelSchool;
 
 import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
-import lunamary.modelPerson.*;
+import lunamary.model.BaseModel;
+import lunamary.model.modelPerson.Device;
+import lunamary.model.modelPerson.Director;
+import lunamary.model.modelPerson.Parent;
+import lunamary.model.modelPerson.Teacher;
 
-public class School {
+public class School extends BaseModel {
 
     private String name;
     private String address;
@@ -16,9 +20,7 @@ public class School {
     private MyCircularDoublyLinkedList<GradeStudent> gradeStudentList;
 
 
-    public School(String name, String address) {
-        this.name = name;
-        this.address = address;
+    public School() {
         this.teacherList = new MyCircularDoublyLinkedList<>();
         this.classroomList = new MyCircularDoublyLinkedList<>();
         this.gradeStudentList = new MyCircularDoublyLinkedList<>();
@@ -81,6 +83,13 @@ public class School {
         this.gradeStudentList = gradeStudentList;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public void addTeacher(Teacher teacher) {
         this.teacherList.add(teacher);

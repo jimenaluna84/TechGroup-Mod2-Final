@@ -1,7 +1,7 @@
 package lunamary.services;
 
-import lunamary.modelPerson.Device;
-import lunamary.modelPerson.AbstractPerson;
+import lunamary.model.modelPerson.Device;
+import lunamary.model.modelPerson.AbstractPerson;
 
 
 public class DeviceService {

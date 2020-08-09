@@ -1,9 +1,7 @@
-package lunamary.ReadWriteData;
+package lunamary.readWriteData;
 
 import datastructures.arraylist.MyArrayList;
 import datastructures.hashmap.MyHashMap;
-
-import java.io.FileNotFoundException;
 
 public abstract class ReadWriteFile {
     protected String path;

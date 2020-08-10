@@ -33,8 +33,14 @@ public class Menu {
                 System.out.println("\t 4.  Register Teacher  (*)");
             }
             ;
+            if (selectOption.contains("5") == false) {
+                System.out.println("\t 5. Register Subject");
+            } else {
+                System.out.println("\t 6. Director set Average by Course  (*)");
+            }
+            ;
             if (selectOption.contains("6") == false) {
-                System.out.println("\t 6. Director set Average by Course");
+                System.out.println("\t 6. Director set Average by classroom");
             } else {
                 System.out.println("\t 6. Director set Average by Course  (*)");
             }
@@ -45,15 +51,18 @@ public class Menu {
                 System.out.println("\t 7. Register Student   (*)");
             }
             ;
-            System.out.println("\t 8. Teacher add Grade Student");
-            System.out.println("\t 9. Teacher Import Grade");
+            if (selectOption.contains("8") == false) {
+                System.out.println("\t 8. Register Assign Grade Student");
+            } else {
+                System.out.println("\t 8. Register Assign Grade Student   (*)");
+            }
+            System.out.println("\t 9. Director generate General Report");
             System.out.println("\t 10. Director generate General Report");
-            System.out.println("\t 11. Director generate General Report");
             System.out.println("\t Para salir ingrese 's'. ");
             System.out.println("-------------------------------------------------");
             System.out.print("Seleccione una opcion: ");
             String selectOption = scanner.nextLine();
-            System.out.println("#################################################\n");
+            System.out.println("#################################################\n\n");
 
             switch (selectOption.toLowerCase()) {
                 case "1":
@@ -74,6 +83,18 @@ public class Menu {
                     break;
                 case "5":
                     uiRegisterSubject();
+                    option = false;
+                    break;
+                case "6":
+                    uiRegisterAverageClassroom();
+                    option = false;
+                    break;
+                case "7":
+                    uiRegisterStudent();
+                    option = false;
+                    break;
+                case "8":
+                    uiRegisterAssignGradeStudent();
                     option = false;
                     break;
                 case "s":
@@ -114,7 +135,7 @@ public class Menu {
     }
 
     public void stepNewSchool(String nameSchool, String address) {
-        SchoolService schoolService = new SchoolService();
+        schoolService = new SchoolService();
         schoolService.createSchool(nameSchool, address);
     }
 
@@ -127,21 +148,12 @@ public class Menu {
         System.out.print("\t Insert the last name Headmaster: ");
         String lastName = scanner.nextLine();
         System.out.print("\t Insert the last CI Headmaster: ");
-        int ci = scanner.nextInt();
-//        stepAddHeadmaster(headmaster, lastName, ci);
-        schoolService.registerDirector(headmaster, lastName, ci);
-        System.out.println("================================================= \n");
-        selectOption += selectOption + "2";
+        String ci = scanner.nextLine();
+        // stepAddHeadmaster(headmaster,lastName,(Integer)ci);
+        System.out.println("=================================================\n");
+        schoolService.registerDirector(headmaster, lastName, Integer.parseInt(ci));
+        selectOption += "2";
         menu();
-    }
-
-    public void stepAddHeadmaster(String headmaster, String lastNameDirector, int ci) {
-        try {
-            schoolService.registerDirector(headmaster, lastNameDirector, ci);
-
-        } catch (Exception e) {
-            //  System.out.println("Something went wrong.");
-        }
     }
 
     public void uiRegisterClassRoom() {
@@ -153,8 +165,8 @@ public class Menu {
         System.out.print("\t Insert the room name: ");
         String name = scanner.nextLine();
         SchoolService.registerClassroom(id, name);
-        System.out.println("================================================= \n");
-        selectOption += selectOption + "3";
+        System.out.println("=================================================\n");
+        selectOption += "3";
         menu();
     }
 
@@ -170,7 +182,7 @@ public class Menu {
         String ciTeacher = scanner.nextLine();
         SchoolService.registerTeacher(nameTeacher, nameClassroom, Integer.parseInt(ciTeacher));
         System.out.println("================================================= \n");
-        selectOption += selectOption + "4";
+        selectOption += "4";
         menu();
     }
 
@@ -184,18 +196,84 @@ public class Menu {
         String codeClassroom = scanner.nextLine();
         System.out.print("\t Insert the Ci Teacher: ");
         String ciTeacher = scanner.nextLine();
-        registerSubject(nameSubject, codeClassroom, Integer.parseInt(ciTeacher));
+        SchoolService.registerSubject(nameSubject, codeClassroom, Integer.parseInt(ciTeacher));
         System.out.println("================================================= \n");
-        selectOption += selectOption + "5";
+        selectOption += "5";
         menu();
     }
 
-    public void registerSubject(String nameSubject, String codeClassroom, int ciTeacher) {
-        try {
-            SchoolService.registerSubject(nameSubject, codeClassroom, ciTeacher);
-        } catch (Exception e) {
+    public void uiRegisterAverageClassroom() {
+        System.out.println("=================================================");
+        System.out.println("6. Register Average Classroom");
+        System.out.println("=================================================");
+        System.out.print("\t Insert the name Classroom: ");
+        String nameClassroom = scanner.nextLine();
+        System.out.print("\t Insert the promedio: ");
+        String average = scanner.nextLine();
+        System.out.print("\t Insert the promedio minimo de aprobacion: ");
+        String averageMinApproval = scanner.nextLine();
+        schoolService.registerAverageClassroom(nameClassroom, Integer.parseInt(average), Integer.parseInt(averageMinApproval));
+        System.out.println("================================================= \n");
+        selectOption += "6";
+        menu();
+    }
 
-        }
+    public void uiRegisterStudent() {
+        System.out.println("=================================================");
+        System.out.println("7. Register Student");
+        System.out.println("=================================================");
+        System.out.print("\t Insert the name Classroom: ");
+        String nameClassroom = scanner.nextLine();
+        System.out.print("\t Insert the name Student: ");
+        String nameStudent = scanner.nextLine();
+        System.out.print("\t Insert the last name Student: ");
+        String lastNameStudent = scanner.nextLine();
+        System.out.print("\t Insert the CI Student: ");
+        String ciStudent = scanner.nextLine();
+        System.out.print("\t Insert the name Parent: ");
+        String nameParent = scanner.nextLine();
+        System.out.print("\t Insert the last name Parent: ");
+        String lastNameParent = scanner.nextLine();
+        System.out.print("\t Insert the CI Parent: ");
+        String ciParent = scanner.nextLine();
+        System.out.print("\t Insert the type Device: ");
+        String typeDevice = scanner.nextLine();
+        System.out.print("\t Insert the number Device: ");
+        String numberDevice = scanner.nextLine();
+        System.out.print("\t Insert the E-mail: ");
+        String email = scanner.nextLine();
+        schoolService.registerStudent(nameClassroom, nameStudent, lastNameStudent, Integer.parseInt(ciStudent), nameParent, lastNameParent, Integer.parseInt(ciParent), typeDevice, numberDevice, "Email", email);
+        System.out.println("================================================= \n");
+        selectOption += "7";
+        menu();
+    }
+
+    public void uiRegisterAssignGradeStudent() {
+        System.out.println("=================================================");
+        System.out.println("8. Register Assign Grade Student");
+        System.out.println("=================================================");
+        System.out.print("\t Insert the name Classroom: ");
+        String nameClassroom = scanner.nextLine();
+        System.out.print("\t Insert the CI teacher: ");
+        String ciTeacher = scanner.nextLine();
+        System.out.print("\t Insert the grade: ");
+        String grade = scanner.nextLine();
+        System.out.print("\t Insert the description: ");
+        String description = scanner.nextLine();
+        System.out.print("\t Insert the grade 2: ");
+        String grade2 = scanner.nextLine();
+        System.out.print("\t Insert the description 2: ");
+        String description2 = scanner.nextLine();
+        System.out.print("\t Insert the ci student: ");
+        String ciStudent = scanner.nextLine();
+        System.out.print("\t Insert the name Subject: ");
+        String subject = scanner.nextLine();
+        System.out.print("\t Insert the Year: ");
+        String year = scanner.nextLine();
+        schoolService.assignGradeStudent(nameClassroom, Integer.parseInt(ciTeacher), Integer.parseInt(grade), description, Integer.parseInt(grade2), description2, Integer.parseInt(ciStudent), subject, year);
+        System.out.println("================================================= \n");
+        selectOption += "8";
+        menu();
     }
 
 

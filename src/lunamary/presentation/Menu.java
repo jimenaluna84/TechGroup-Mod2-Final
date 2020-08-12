@@ -78,13 +78,13 @@ public class Menu {
     }
     public void uiRegisterDirectorSchool(){
         System.out.println("=================================================");
-        System.out.println(" 2. Assign Headmaster to the school ");
+        System.out.println(" 2. Assign director to the school ");
         System.out.println("=================================================");
-        System.out.print("\t Insert  name Headmaster: ");
-        String headmaster = scanner.nextLine();
-        System.out.print("\t Insert the last name Headmaster: ");
+        System.out.print("\t Insert  name Director: ");
+        String director = scanner.nextLine();
+        System.out.print("\t Insert the last name Director: ");
         String lastName = scanner.nextLine();
-        System.out.print("\t Insert the last CI Headmaster: ");
+        System.out.print("\t Insert the last CI Director: ");
         String ci = scanner.nextLine();
         System.out.print("\t Insert the Gender Director: ");
         String gender = scanner.nextLine();

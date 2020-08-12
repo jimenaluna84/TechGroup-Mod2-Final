@@ -39,14 +39,14 @@ public class SchoolService {
     public void registerDirector(String name, String lastname, int ci, String gender) {
         DirectorService directorService = new DirectorService();
         Director director = directorService.createDirector(name, lastname, ci, gender);
-        school.setDirector(director);
+        getSchoolService().getSchool().setDirector(director);
 
     }
 
     public static void registerClassroom(String id, String name) {
         ClassroomService classroomService = new ClassroomService();
         Classroom classroom = classroomService.crateClassroom(id, name);
-        school.addClassroom(classroom);
+        getSchoolService().getSchool().addClassroom(classroom);
 
     }
 
@@ -70,14 +70,14 @@ public class SchoolService {
         Parent parent = SearchService.getParent(ci);
         DeviceService deviceService = new DeviceService();
         Device device = deviceService.createDevice(type, identifier, parent);
-        school.addDevice(device);
+        getSchoolService().getSchool().addDevice(device);
     }
 
 
     public static void registerTeacher(String name, String lastname, int ci, String gender) {
         TeacherService teacherService = new TeacherService();
         Teacher teacher = teacherService.createTeacher(name, lastname, ci, gender);
-        school.addTeacher(teacher);
+        getSchoolService().getSchool().addTeacher(teacher);
 
     }
 
@@ -88,7 +88,6 @@ public class SchoolService {
         Teacher teacher = SearchService.getTeacher(ciTeacher);
         subjectService.setTeacher(subject, teacher);
         classroom.addSubject(subject);
-        System.out.println(subject.getName().toString());
 
 
     }
@@ -131,7 +130,7 @@ public class SchoolService {
         Subject subject = SearchService.getSubject(classroom, nameSubject);
         TeacherService teacherService = new TeacherService();
         GradeStudent gradeStudent = teacherService.createGradeStudent(teacher, student, subject, year, newGrade);
-        school.addGradeStudent(gradeStudent);
+        getSchoolService().getSchool().addGradeStudent(gradeStudent);
 
 
     }
@@ -146,11 +145,11 @@ public class SchoolService {
 
                 int ciTeacher = Integer.parseInt(entry.get("ciTeacher"));
                 String nameClassroom = entry.get("nameClassroom");
-                String subject = entry.get("Subject");
+                String subject = entry.get("subject");
                 int ciStudent = Integer.parseInt(entry.get("ciStudent"));
                 int grade = Integer.parseInt(entry.get("grade"));
-                String gestion = entry.get("gestion");
-                this.assignGradeStudent(nameClassroom, ciTeacher, grade, "IMPORT GRADE", ciStudent, subject, gestion);
+                String year = entry.get("year");
+                this.assignGradeStudent(nameClassroom, ciTeacher, grade, "IMPORT GRADE", ciStudent, subject, year);
 
             }
             isImportSucess = true;
@@ -171,7 +170,7 @@ public class SchoolService {
                         Student student = (Student) listStudents.get(j);
                         int finalAverage = computeAverageStudent(student, year);
                         Kardex kardex = kardexService.createKardex(student, room, finalAverage, year);
-                        school.addKardex(kardex);
+                        getSchoolService().getSchool().addKardex(kardex);
 
                     }
                 }
@@ -190,7 +189,7 @@ public class SchoolService {
             for (int i = 0; i < list.size(); i++) {
                 GradeStudent gradeStudent = (GradeStudent) list.get(i);
                 if (gradeStudent.getStudent().getId() == student.getId() && gradeStudent.getYear() == year) {
-                    total = total++;
+                    total += gradeStudent.getGrade().getGrade();
                     cont++;
                 }
             }

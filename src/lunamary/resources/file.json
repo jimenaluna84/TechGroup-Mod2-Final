@@ -3,7 +3,7 @@
     "ciTeacher": "300",
     "nameClassroom": "1A",
     "ciStudent": "400",
-    "Subject": "English",
+    "subject": "English",
     "grade": 50,
     "year": "2020"
   },
@@ -11,8 +11,8 @@
     "ciTeacher": "300",
     "nameClassroom": "1A",
     "ciStudent": "401",
-    "Subject": "English",
-    "gradeSemester1": 50,
+    "subject": "English",
+    "grade": 50,
     "year": "2020"
   }
 ]

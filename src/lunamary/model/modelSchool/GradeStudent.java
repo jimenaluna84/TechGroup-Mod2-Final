@@ -24,11 +24,11 @@ public class GradeStudent extends BaseModel {
         this.teacher = teacher;
     }
 
-    public Grade getGradeList() {
+    public Grade getGrade() {
         return grade;
     }
 
-    public void setGradeList(Grade gradeList) {
+    public void setGrade(Grade gradeList) {
         this.grade = gradeList;
     }
 

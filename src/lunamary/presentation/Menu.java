@@ -2,6 +2,7 @@ package lunamary.presentation;
 
 import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
 import datastructures.hashmap.MyHashMap;
+import lunamary.model.modelPerson.Kardex;
 import lunamary.model.modelPerson.Student;
 import lunamary.model.modelPerson.Teacher;
 import lunamary.model.modelSchool.Classroom;
@@ -9,6 +10,8 @@ import lunamary.model.modelSchool.GradeStudent;
 import lunamary.model.modelSchool.Subject;
 import lunamary.services.SchoolService;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -248,7 +251,7 @@ public class Menu {
                 Classroom classroom = (Classroom) list.get(i);
                 MyCircularDoublyLinkedList listSubject = classroom.getSubjectList();
                 for (int j = 0; j < listSubject.size(); j++) {
-                    Subject subject = (Subject) listSubject.get(i);
+                    Subject subject = (Subject) listSubject.get(j);
                     System.out.println(classroom.getCode() + "          " + classroom.getName() + "         " + subject.getName() + "            " + subject.getTeacher().getName() + " " + subject.getTeacher().getLastname());
                 }
             }
@@ -341,7 +344,7 @@ public class Menu {
     }
 
 
-    public void viewListStudentsByCouse() {
+    public void viewListStudentsByCourse() {
         MyCircularDoublyLinkedList list = schoolService.getSchool().getClassroomList();
         if (list.size() > 0) {
             System.out.println("    List Classroom:");
@@ -358,7 +361,6 @@ public class Menu {
                         System.out.println("    • " + fullName);
 
 
-
                     }
                 }
                 System.out.println();
@@ -368,29 +370,17 @@ public class Menu {
     }
 
 
-//    public void viewListGradeStudentsByCouse() {
-//        Map<Classroom, GradeStudent> report = new Map<Classroom, GradeStudent>();
-//
-//        MyCircularDoublyLinkedList list = schoolService.getSchool().getClassroomList();
-//        if (list.size() > 0) {
-//            System.out.println("    List Classroom:");
-//            for (int i = 0; i < list.size(); i++) {
-//                Classroom room = (Classroom) list.get(i);
-//                String name = room.getCode() + " - " + room.getName() + " - " + room.getAverageScholarshipGrade() + "-" + room.getMinimumAverageApprobation();
-//                System.out.println("    • " + name);
-//                Map<>
-//                MyCircularDoublyLinkedList listStudents = room.getStudentList();
-//                if (listStudents.size() > 0) {
-//                    System.out.println("    List Students:");
-//                    for (int j = 0; j < listStudents.size(); j++) {
-//                        Student student = (Student) listStudents.get(j);
-//                        String fullName = student.getName() + " " + student.getLastname() + " " + student.getCi();
-//                        System.out.println("    • " + fullName);
-//                    }
-//                }
-//                System.out.println();
-//            }
-//        }
-//
-//    }
+    public void viewListKardex() {
+        MyCircularDoublyLinkedList list = schoolService.getSchool().getKardexList();
+        if (list.size() > 0) {
+            System.out.println("    List Kardex:");
+            for (int i = 0; i < list.size(); i++) {
+                Kardex kardex = (Kardex) list.get(i);
+                String name = kardex.getStudent().getName() + " - " + kardex.getClassroom().getCode() + " - " + kardex.getFinalAverage();
+                System.out.println("    • " + name);
+                System.out.println();
+            }
+        }
+
+    }
 }

@@ -6,9 +6,11 @@ import lunamary.model.modelPerson.*;
 import lunamary.model.modelSchool.*;
 import lunamary.readWriteData.AbstractFactory;
 import lunamary.readWriteData.ReadWriteFile;
-;
+
 import java.util.ArrayList;
 import java.util.List;
+
+;
 
 public class SchoolService {
     private static SchoolService schoolService;
@@ -18,6 +20,11 @@ public class SchoolService {
     public SchoolService() {
         this.school = new School();
 
+    }
+
+    public SchoolService(String nameSchool, String address) {
+        this.school = new School();
+        this.setDataSchool(nameSchool,address);
     }
 
     public static SchoolService getSchoolService() {
@@ -34,9 +41,9 @@ public class SchoolService {
 
 
 
-    public void registerDirector(String name, String lastname, int ci) {
+    public void registerDirector(String name, String lastname, int ci, String gender) {
         DirectorService directorService = new DirectorService();
-        Director director = directorService.createDirector(name, lastname, ci);
+        Director director = directorService.createDirector(name, lastname, ci, gender);
         school.setDirector(director);
 
     }
@@ -73,9 +80,9 @@ public class SchoolService {
     }
 
 
-    public static void registerTeacher(String name, String lastname, int ci) {
+    public static void registerTeacher(String name, String lastname, int ci, String gender) {
         TeacherService teacherService = new TeacherService();
-        Teacher teacher = teacherService.createTeacher(name, lastname, ci);
+        Teacher teacher = teacherService.createTeacher(name, lastname, ci, gender);
         school.addTeacher(teacher);
 
     }
@@ -101,10 +108,10 @@ public class SchoolService {
 
     public static void registerStudent(String codeClassroom, String name, String lastName, int ci, String gender, String nameParent,
                                        String lastNameParent, int ciParent, String typeDevice1, String identifier1,
-                                       String typeDevice2, String identifier2) {
+                                       String typeDevice2, String identifier2, String genderParent) {
 
         ParentService parentService = new ParentService();
-        Parent parent = parentService.createParent(nameParent, lastNameParent, ciParent);
+        Parent parent = parentService.createParent(nameParent, lastNameParent, ciParent,genderParent);
 
         DeviceService deviceService = new DeviceService();
         deviceService.createDevice(typeDevice1, identifier1, parent);

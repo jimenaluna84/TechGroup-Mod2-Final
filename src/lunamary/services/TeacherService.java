@@ -14,8 +14,8 @@ public class TeacherService {
 
     }
 
-    public Teacher createTeacher(String name, String lastName, int age) {
-        Teacher teacher = new Teacher(name, lastName, age);
+    public Teacher createTeacher(String name, String lastName, int age,String gender) {
+        Teacher teacher = new Teacher(name, lastName, age,gender);
         return teacher;
     }
 

@@ -4,8 +4,7 @@
     "nameClassroom": "1A",
     "ciStudent": "400",
     "Subject": "English",
-    "gradeSemester1": 50,
-    "gradeSemester2": 50,
+    "grade": 50,
     "year": "2020"
   },
   {
@@ -14,7 +13,6 @@
     "ciStudent": "401",
     "Subject": "English",
     "gradeSemester1": 50,
-    "gradeSemester2": 50,
     "year": "2020"
   }
 ]

@@ -1,32 +1,68 @@
 package lunamary.presentation;
 
 import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
+import datastructures.hashmap.MyHashMap;
+import lunamary.model.modelPerson.Student;
 import lunamary.model.modelPerson.Teacher;
 import lunamary.model.modelSchool.Classroom;
+import lunamary.model.modelSchool.GradeStudent;
 import lunamary.model.modelSchool.Subject;
 import lunamary.services.SchoolService;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
-    SchoolService schoolService ;
+    SchoolService schoolService;
     Scanner scanner = new Scanner(System.in);
     String selectOption = "";
 
-    public void menu(){
+    public void menu() {
         boolean option = true;
-        do{
+        do {
             System.out.println("#################################################");
             System.out.println("Creation sequence for the school system:");
             System.out.println("#################################################");
-            if (selectOption.contains("1") == false){System.out.println("\t 1. Register New School");}
-            if (selectOption.contains("2") == false){System.out.println("\t 2. Assign Director to the school");}
-            if (selectOption.contains("3") == false){System.out.println("\t 3. Register New Classroom ");}else{System.out.println("\t 3. Register New Classroom   (*)");}
-            if (selectOption.contains("4") == false){System.out.println("\t 4. Register Teacher");}else{System.out.println("\t 4.  Register Teacher  (*)");};
-            if (selectOption.contains("5") == false){System.out.println("\t 5. Register Subject");}else{System.out.println("\t 6. Director set Average by Course  (*)");};
-            if (selectOption.contains("6") == false){System.out.println("\t 6. Director set Average by classroom");}else{System.out.println("\t 6. Director set Average by Course  (*)");};
-            if (selectOption.contains("7") == false){System.out.println("\t 7. Register Student");}else{System.out.println("\t 7. Register Student   (*)");};
-            if (selectOption.contains("8") == false){System.out.println("\t 8. Register Assign Grade Student");}else{System.out.println("\t 8. Register Assign Grade Student   (*)");}
+            if (selectOption.contains("1") == false) {
+                System.out.println("\t 1. Register New School");
+            }
+            if (selectOption.contains("2") == false) {
+                System.out.println("\t 2. Assign Director to the school");
+            }
+            if (selectOption.contains("3") == false) {
+                System.out.println("\t 3. Register New Classroom ");
+            } else {
+                System.out.println("\t 3. Register New Classroom   (*)");
+            }
+            if (selectOption.contains("4") == false) {
+                System.out.println("\t 4. Register Teacher");
+            } else {
+                System.out.println("\t 4.  Register Teacher  (*)");
+            }
+            ;
+            if (selectOption.contains("5") == false) {
+                System.out.println("\t 5. Register Subject");
+            } else {
+                System.out.println("\t 5. Director set Average by Course  (*)");
+            }
+            ;
+            if (selectOption.contains("6") == false) {
+                System.out.println("\t 6. Director set Average by classroom");
+            } else {
+                System.out.println("\t 6. Director set Average by Course  (*)");
+            }
+            ;
+            if (selectOption.contains("7") == false) {
+                System.out.println("\t 7. Register Student");
+            } else {
+                System.out.println("\t 7. Register Student   (*)");
+            }
+            ;
+            if (selectOption.contains("8") == false) {
+                System.out.println("\t 8. Register Assign Grade Student");
+            } else {
+                System.out.println("\t 8. Register Assign Grade Student   (*)");
+            }
             System.out.println("\t 9. Director generate General Report");
             System.out.println("\t 10. Director generate General Report");
             System.out.println("\t Para salir ingrese 's'. ");
@@ -35,25 +71,57 @@ public class Menu {
             String selectOption = scanner.nextLine();
             System.out.println("#################################################\n\n");
 
-            switch(selectOption.toLowerCase()){
-                case "1": uiRegisterNewSchool(); option = false; break;
-                case "2": uiRegisterDirectorSchool(); option = false; break;
-                case "3": uiRegisterClassRoom(); option = false; break;
-                case "4": uiRegisterTeacher(); option = false; break;
-                case "5": uiRegisterSubject(); option = false; break;
-                case "6": uiRegisterAverageClassroom(); option = false; break;
-                case "7": uiRegisterStudent(); option = false; break;
-                case "8": uiRegisterAssignGradeStudent(); option = false; break;
-                case "s": option = false; break;
-                default : menu(); break;
+            switch (selectOption.toLowerCase()) {
+                case "1":
+                    uiRegisterNewSchool();
+                    option = false;
+                    break;
+                case "2":
+                    uiRegisterDirectorSchool();
+                    option = false;
+                    break;
+                case "3":
+                    uiRegisterClassRoom();
+                    option = false;
+                    break;
+                case "4":
+                    uiRegisterTeacher();
+                    option = false;
+                    break;
+                case "5":
+                    uiRegisterSubject();
+                    option = false;
+                    break;
+                case "6":
+                    uiRegisterAverageClassroom();
+                    option = false;
+                    break;
+                case "7":
+                    uiRegisterStudent();
+                    option = false;
+                    break;
+                case "8":
+                    uiRegisterAssignGradeStudent();
+                    option = false;
+                    break;
+                case "s":
+                    option = false;
+                    break;
+                default:
+                    menu();
+                    break;
             }
-            if (selectOption.contains("5") == false){System.out.println("\t 5. Register New Subject");}else{System.out.println("\t 5. Register New Subject   (*)");};
-            // System.out.println("\t 6. Register Direct@Basheera Kaladgi @ashwini.pc   I tried again today, but I get the same behavior,
-            //And to create GCP Cloud  credential,  it is  require a file (Acces key), could you proviedme o  or
-        }while(option);
+            if (selectOption.contains("5") == false) {
+                System.out.println("\t 5. Register New Subject");
+            } else {
+                System.out.println("\t 5. Register New Subject   (*)");
+            }
+            ;
+
+        } while (option);
     }
 
-    public void uiRegisterNewSchool(){
+    public void uiRegisterNewSchool() {
         System.out.println("=================================================");
         System.out.println("1. Register New School");
         System.out.println("=================================================");
@@ -62,21 +130,17 @@ public class Menu {
         System.out.print("\t Insert the address school: ");
         String address = scanner.nextLine();
         System.out.println("=================================================\n");
-        stepNewSchool(nameSchool,address);
-        selectOption +=selectOption +"1";
+        stepNewSchool(nameSchool, address);
+        selectOption += selectOption + "1";
         menu();
     }
 
-    public void stepNewSchoolAndSchool(String nameSchool, String address, String director,String lastNameDirector, int ci){
-//        schoolService = new SchoolService(nameSchool, address);
-//        schoolService.createSchool(nameSchool, address);
-//        schoolService.registerDirector(director, lastNameDirector, ci);
-    }
-    public void stepNewSchool(String nameSchool, String address){
+
+    public void stepNewSchool(String nameSchool, String address) {
         schoolService = new SchoolService(nameSchool, address);
-        //schoolService.createSchool(nameSchool, address);
     }
-    public void uiRegisterDirectorSchool(){
+
+    public void uiRegisterDirectorSchool() {
         System.out.println("=================================================");
         System.out.println(" 2. Assign director to the school ");
         System.out.println("=================================================");
@@ -88,14 +152,14 @@ public class Menu {
         String ci = scanner.nextLine();
         System.out.print("\t Insert the Gender Director: ");
         String gender = scanner.nextLine();
-        schoolService.registerDirector(director,lastName,Integer.parseInt(ci),gender);
+        schoolService.registerDirector(director, lastName, Integer.parseInt(ci), gender);
         System.out.println("=================================================\n");
-        schoolService.registerDirector(director, lastName, Integer.parseInt(ci),gender);
-        selectOption +="2";
+        schoolService.registerDirector(director, lastName, Integer.parseInt(ci), gender);
+        selectOption += "2";
         menu();
     }
 
-    public void uiRegisterClassRoom(){
+    public void uiRegisterClassRoom() {
         System.out.println("=================================================");
         System.out.println(" 3. Register New Classroom");
         System.out.println("=================================================");
@@ -107,13 +171,13 @@ public class Menu {
         String name = scanner.nextLine();
         SchoolService.registerClassroom(id, name);
         System.out.println("=================================================\n");
-        selectOption +="3";
+        selectOption += "3";
         menu();
     }
 
-    public void viewListClassroom(){
+    public void viewListClassroom() {
         MyCircularDoublyLinkedList list = schoolService.getSchool().getClassroomList();
-        if (list.size()>0) {
+        if (list.size() > 0) {
             System.out.println("    List Classroom:");
             for (int i = 0; i < list.size(); i++) {
                 Classroom room = (Classroom) list.get(i);
@@ -124,7 +188,7 @@ public class Menu {
         }
     }
 
-    public void uiRegisterTeacher(){
+    public void uiRegisterTeacher() {
         System.out.println("=================================================");
         System.out.println("4. Register Teacher");
         System.out.println("=================================================");
@@ -137,14 +201,15 @@ public class Menu {
         String ciTeacher = scanner.nextLine();
         System.out.print("\t Insert the Gender: ");
         String gender = scanner.nextLine();
-        SchoolService.registerTeacher(nameTeacher, lastName, Integer.parseInt(ciTeacher),gender);
+        SchoolService.registerTeacher(nameTeacher, lastName, Integer.parseInt(ciTeacher), gender);
         System.out.println("================================================= \n");
-        selectOption +="4";
+        selectOption += "4";
         menu();
     }
-    public void viewListTeacher(){
+
+    public void viewListTeacher() {
         MyCircularDoublyLinkedList list = schoolService.getSchool().getTeacherList();
-        if (list.size()>0) {
+        if (list.size() > 0) {
             System.out.println("    List Teachers:");
             for (int i = 0; i < list.size(); i++) {
                 Teacher teacher = (Teacher) list.get(i);
@@ -155,7 +220,7 @@ public class Menu {
         }
     }
 
-    public void uiRegisterSubject(){
+    public void uiRegisterSubject() {
         System.out.println("=================================================");
         System.out.println("5. Register Subject");
         System.out.println("=================================================");
@@ -169,13 +234,13 @@ public class Menu {
         String ciTeacher = scanner.nextLine();
         SchoolService.registerSubject(nameSubject, codeClassroom, Integer.parseInt(ciTeacher));
         System.out.println("================================================= \n");
-        selectOption +="5";
+        selectOption += "5";
         menu();
     }
 
-    public void viewListSubject(){
+    public void viewListSubject() {
         MyCircularDoublyLinkedList list = schoolService.getSchool().getClassroomList();
-        if (list.size()>0) {
+        if (list.size() > 0) {
             System.out.println("                 List Subject       ");
             System.out.println("    ClassRoom       |       Subject      |       teacher      ");
             System.out.println("¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
@@ -186,14 +251,12 @@ public class Menu {
                     Subject subject = (Subject) listSubject.get(i);
                     System.out.println(classroom.getCode() + "          " + classroom.getName() + "         " + subject.getName() + "            " + subject.getTeacher().getName() + " " + subject.getTeacher().getLastname());
                 }
-//            String name = teacher.getName()+" "+teacher.getLastname();
-//            System.out.println("    • "+ name);
             }
             System.out.println();
         }
     }
 
-    public void uiRegisterAverageClassroom(){
+    public void uiRegisterAverageClassroom() {
         System.out.println("=================================================");
         System.out.println("6. Register Average Classroom");
         System.out.println("=================================================");
@@ -205,10 +268,11 @@ public class Menu {
         String averageMinApproval = scanner.nextLine();
         schoolService.registerAverageClassroom(nameClassroom, Integer.parseInt(average), Integer.parseInt(averageMinApproval));
         System.out.println("================================================= \n");
-        selectOption +="6";
+        selectOption += "6";
         menu();
     }
-    public void uiRegisterStudent(){
+
+    public void uiRegisterStudent() {
         System.out.println("=================================================");
         System.out.println("7. Register Student");
         System.out.println("=================================================");
@@ -234,10 +298,11 @@ public class Menu {
         String email = scanner.nextLine();
         //schoolService.registerStudent(nameClassroom, nameStudent, lastNameStudent, Integer.parseInt(ciStudent), nameParent, lastNameParent, Integer.parseInt(ciParent), typeDevice, numberDevice, "Email", email);
         System.out.println("================================================= \n");
-        selectOption +="7";
+        selectOption += "7";
         menu();
     }
-    public void uiRegisterAssignGradeStudent(){
+
+    public void uiRegisterAssignGradeStudent() {
         System.out.println("=================================================");
         System.out.println("8. Register Assign Grade Student");
         System.out.println("=================================================");
@@ -249,24 +314,83 @@ public class Menu {
         String grade = scanner.nextLine();
         System.out.print("\t Insert the description: ");
         String description = scanner.nextLine();
-        System.out.print("\t Insert the grade 2: ");
-        String grade2 = scanner.nextLine();
-        System.out.print("\t Insert the description 2: ");
-        String description2 = scanner.nextLine();
         System.out.print("\t Insert the ci student: ");
         String ciStudent = scanner.nextLine();
         System.out.print("\t Insert the name Subject: ");
         String subject = scanner.nextLine();
         System.out.print("\t Insert the Year: ");
         String year = scanner.nextLine();
-        schoolService.assignGradeStudent(nameClassroom, Integer.parseInt(ciTeacher), Integer.parseInt(grade), description, Integer.parseInt(grade2), description2, Integer.parseInt(ciStudent), subject, year);
+        schoolService.assignGradeStudent(nameClassroom, Integer.parseInt(ciTeacher), Integer.parseInt(grade), description, Integer.parseInt(ciStudent), subject, year);
         System.out.println("================================================= \n");
-        selectOption +="8";
+        selectOption += "8";
         menu();
     }
 
 
+    public void viewListClassroomAverage() {
+        MyCircularDoublyLinkedList list = schoolService.getSchool().getClassroomList();
+        if (list.size() > 0) {
+            System.out.println("    List Classroom:");
+            for (int i = 0; i < list.size(); i++) {
+                Classroom room = (Classroom) list.get(i);
+                String name = room.getCode() + " - " + room.getName() + " - " + room.getAverageScholarshipGrade() + "-" + room.getMinimumAverageApprobation();
+                System.out.println("    • " + name);
+            }
+            System.out.println();
+        }
+    }
+
+
+    public void viewListStudentsByCouse() {
+        MyCircularDoublyLinkedList list = schoolService.getSchool().getClassroomList();
+        if (list.size() > 0) {
+            System.out.println("    List Classroom:");
+            for (int i = 0; i < list.size(); i++) {
+                Classroom room = (Classroom) list.get(i);
+                String name = room.getCode() + " - " + room.getName() + " - " + room.getAverageScholarshipGrade() + "-" + room.getMinimumAverageApprobation();
+                System.out.println("    • " + name);
+                MyCircularDoublyLinkedList listStudents = room.getStudentList();
+                if (listStudents.size() > 0) {
+                    System.out.println("    List Students:");
+                    for (int j = 0; j < listStudents.size(); j++) {
+                        Student student = (Student) listStudents.get(j);
+                        String fullName = student.getName() + " " + student.getLastname() + " " + student.getCi();
+                        System.out.println("    • " + fullName);
 
 
 
+                    }
+                }
+                System.out.println();
+            }
+        }
+
+    }
+
+
+//    public void viewListGradeStudentsByCouse() {
+//        Map<Classroom, GradeStudent> report = new Map<Classroom, GradeStudent>();
+//
+//        MyCircularDoublyLinkedList list = schoolService.getSchool().getClassroomList();
+//        if (list.size() > 0) {
+//            System.out.println("    List Classroom:");
+//            for (int i = 0; i < list.size(); i++) {
+//                Classroom room = (Classroom) list.get(i);
+//                String name = room.getCode() + " - " + room.getName() + " - " + room.getAverageScholarshipGrade() + "-" + room.getMinimumAverageApprobation();
+//                System.out.println("    • " + name);
+//                Map<>
+//                MyCircularDoublyLinkedList listStudents = room.getStudentList();
+//                if (listStudents.size() > 0) {
+//                    System.out.println("    List Students:");
+//                    for (int j = 0; j < listStudents.size(); j++) {
+//                        Student student = (Student) listStudents.get(j);
+//                        String fullName = student.getName() + " " + student.getLastname() + " " + student.getCi();
+//                        System.out.println("    • " + fullName);
+//                    }
+//                }
+//                System.out.println();
+//            }
+//        }
+//
+//    }
 }

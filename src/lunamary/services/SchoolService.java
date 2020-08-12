@@ -1,16 +1,13 @@
 package lunamary.services;
 
 import datastructures.arraylist.MyArrayList;
+import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
 import datastructures.hashmap.MyHashMap;
 import lunamary.model.modelPerson.*;
 import lunamary.model.modelSchool.*;
 import lunamary.readWriteData.AbstractFactory;
 import lunamary.readWriteData.ReadWriteFile;
 
-import java.util.ArrayList;
-import java.util.List;
-
-;
 
 public class SchoolService {
     private static SchoolService schoolService;
@@ -24,7 +21,7 @@ public class SchoolService {
 
     public SchoolService(String nameSchool, String address) {
         this.school = new School();
-        this.setDataSchool(nameSchool,address);
+        this.setDataSchool(nameSchool, address);
     }
 
     public static SchoolService getSchoolService() {
@@ -39,8 +36,6 @@ public class SchoolService {
     }
 
 
-
-
     public void registerDirector(String name, String lastname, int ci, String gender) {
         DirectorService directorService = new DirectorService();
         Director director = directorService.createDirector(name, lastname, ci, gender);
@@ -52,7 +47,6 @@ public class SchoolService {
         ClassroomService classroomService = new ClassroomService();
         Classroom classroom = classroomService.crateClassroom(id, name);
         school.addClassroom(classroom);
-        System.out.println(classroom.getName().toString());
 
     }
 
@@ -111,7 +105,7 @@ public class SchoolService {
                                        String typeDevice2, String identifier2, String genderParent) {
 
         ParentService parentService = new ParentService();
-        Parent parent = parentService.createParent(nameParent, lastNameParent, ciParent,genderParent);
+        Parent parent = parentService.createParent(nameParent, lastNameParent, ciParent, genderParent);
 
         DeviceService deviceService = new DeviceService();
         deviceService.createDevice(typeDevice1, identifier1, parent);
@@ -127,20 +121,16 @@ public class SchoolService {
 
     }
 
-    public void assignGradeStudent(String codeClassroom, int ciTeacher, int grade1, String description1, int grade2, String description2, int ciStudent, String nameSubject, String year) {
+    public void assignGradeStudent(String codeClassroom, int ciTeacher, int grade, String description, int ciStudent, String nameSubject, String year) {
 
         Classroom classroom = SearchService.getClassroom(codeClassroom);
         GradeService gradeService = new GradeService();
-        Grade first_test = gradeService.createGrade(grade1, description1);
-        Grade second_test = gradeService.createGrade(grade2, description2);
-        List<Grade> grades = new ArrayList<>();
-        grades.add(first_test);
-        grades.add(second_test);
+        Grade newGrade = gradeService.createGrade(grade, description);
         Teacher teacher = SearchService.getTeacher(ciTeacher);
         Student student = SearchService.getStudent(classroom, ciStudent);
         Subject subject = SearchService.getSubject(classroom, nameSubject);
         TeacherService teacherService = new TeacherService();
-        GradeStudent gradeStudent = teacherService.createGradeStudent(teacher, student, subject, year, grades);
+        GradeStudent gradeStudent = teacherService.createGradeStudent(teacher, student, subject, year, newGrade);
         school.addGradeStudent(gradeStudent);
 
 
@@ -158,16 +148,55 @@ public class SchoolService {
                 String nameClassroom = entry.get("nameClassroom");
                 String subject = entry.get("Subject");
                 int ciStudent = Integer.parseInt(entry.get("ciStudent"));
-                int gradeSemester1 = Integer.parseInt(entry.get("gradeSemester1"));
-                int gradeSemester2 = Integer.parseInt(entry.get("gradeSemester2"));
+                int grade = Integer.parseInt(entry.get("grade"));
                 String gestion = entry.get("gestion");
-                this.assignGradeStudent(nameClassroom, ciTeacher, gradeSemester1, "", gradeSemester2, "", ciStudent, subject, gestion);
+                this.assignGradeStudent(nameClassroom, ciTeacher, grade, "IMPORT GRADE", ciStudent, subject, gestion);
 
             }
             isImportSucess = true;
         }
         return isImportSucess;
 
+    }
+
+    public void computeAverageStudents(String year) {
+        KardexService kardexService = new KardexService();
+        MyCircularDoublyLinkedList list = schoolService.getSchool().getClassroomList();
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                Classroom room = (Classroom) list.get(i);
+                MyCircularDoublyLinkedList listStudents = room.getStudentList();
+                if (listStudents.size() > 0) {
+                    for (int j = 0; j < listStudents.size(); j++) {
+                        Student student = (Student) listStudents.get(j);
+                        int finalAverage = computeAverageStudent(student, year);
+                        Kardex kardex = kardexService.createKardex(student, room, finalAverage, year);
+                        school.addKardex(kardex);
+
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    public int computeAverageStudent(Student student, String year) {
+        int finalAverage = 0;
+        int total = 0;
+        int cont = 0;
+        MyCircularDoublyLinkedList list = schoolService.getSchool().getGradeStudentList();
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                GradeStudent gradeStudent = (GradeStudent) list.get(i);
+                if (gradeStudent.getStudent().getId() == student.getId() && gradeStudent.getYear() == year) {
+                    total = total++;
+                    cont++;
+                }
+            }
+        }
+        finalAverage = total / cont;
+        return finalAverage;
     }
 
 

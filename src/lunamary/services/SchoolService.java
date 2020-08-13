@@ -3,10 +3,13 @@ package lunamary.services;
 import datastructures.arraylist.MyArrayList;
 import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
 import datastructures.hashmap.MyHashMap;
+import datastructures.linkedlist.MyLinkedList;
 import lunamary.model.modelPerson.*;
 import lunamary.model.modelSchool.*;
 import lunamary.readWriteData.AbstractFactory;
 import lunamary.readWriteData.ReadWriteFile;
+
+import java.util.HashMap;
 
 
 public class SchoolService {
@@ -171,7 +174,7 @@ public class SchoolService {
                         int finalAverage = computeAverageStudent(student, year);
                         Kardex kardex = kardexService.createKardex(student, room, finalAverage, year);
                         getSchoolService().getSchool().addKardex(kardex);
-
+                        addkardexOrderByDesc(kardex);
                     }
                 }
 
@@ -222,6 +225,52 @@ public class SchoolService {
         getSchool().setName(name);
         getSchool().setAddress(address);
     }
+
+    public HashMap<String,MyLinkedList<Kardex>> addkardexOrderByDesc(Kardex kardex){
+        HashMap<String,MyLinkedList<Kardex>> hashKardex = school.getKardexHashMap();
+        MyLinkedList<Kardex> listKardex = new MyLinkedList<>();
+        if(hashKardex.containsKey(kardex.getClassroom().getCode()) == false){
+            listKardex.add(kardex);
+            hashKardex.put(kardex.getClassroom().getCode(),listKardex);
+        }else{
+            listKardex = hashKardex.get(kardex.getClassroom().getCode());
+            addOrderKardexList(kardex,listKardex);
+            hashKardex.put(kardex.getClassroom().getCode(),listKardex);
+        }
+        return hashKardex;
+    }
+    public void addOrderKardexList(Kardex kardex, MyLinkedList<Kardex> listKardex ){
+
+        if(listKardex.size() == 1){
+            if (listKardex.get(0).getFinalAverage() > kardex.getFinalAverage()){
+                listKardex.add(kardex);
+            }else {
+                listKardex.add(0,kardex);
+            }
+        }else {
+            boolean isInsert = false;
+            int index = 0;
+            int endIndex = listKardex.size()-1;
+            while(!isInsert){
+
+                int thisValue = listKardex.get(index).getFinalAverage();
+                int nextValue = ((index + 1) < endIndex)?listKardex.get(index+1).getFinalAverage(): -1;
+                if (kardex.getFinalAverage()>thisValue){
+                    listKardex.add(index,kardex);
+                    isInsert = true;
+                }else if(nextValue == -1){
+                    listKardex.add(index+1,kardex);
+                    isInsert = true;
+                }else if(kardex.getFinalAverage()>thisValue && kardex.getFinalAverage() < nextValue){
+                    listKardex.add(index+1,kardex);
+                    isInsert = true;
+                }
+            }
+        }
+
+    }
+
+
 }
 
 

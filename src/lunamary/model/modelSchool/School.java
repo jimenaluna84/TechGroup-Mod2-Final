@@ -19,7 +19,7 @@ public class School extends BaseModel {
     private MyCircularDoublyLinkedList<Device> deviceList;
     private MyCircularDoublyLinkedList<GradeStudent> gradeStudentList;
     private MyCircularDoublyLinkedList<Kardex> kardexList;
-    private HashMap<String,MyLinkedList<Kardex>> kardexHashMap;
+    private HashMap<String, MyLinkedList<Kardex>> kardexHashMap;
 
 
     public School() {
@@ -27,7 +27,7 @@ public class School extends BaseModel {
         this.classroomList = new MyCircularDoublyLinkedList<>();
         this.gradeStudentList = new MyCircularDoublyLinkedList<>();
         this.kardexList = new MyCircularDoublyLinkedList<>();
-        this.kardexHashMap = new HashMap<String,MyLinkedList<Kardex>>();
+        this.kardexHashMap = new HashMap<>();
     }
 
     public String getName() {
@@ -127,9 +127,13 @@ public class School extends BaseModel {
         this.kardexList.add(kardex);
     }
 
-    public HashMap<String,MyLinkedList<Kardex>> getKardexHashMap(){
+    public HashMap<String, MyLinkedList<Kardex>> getKardexHashMap() {
         return this.kardexHashMap;
     }
 
+
+    public void setKardexHashMap(HashMap<String, MyLinkedList<Kardex>> kardexHashMap) {
+        this.kardexHashMap = kardexHashMap;
+    }
 
 }

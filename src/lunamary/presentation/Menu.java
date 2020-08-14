@@ -216,7 +216,7 @@ public class Menu {
             System.out.println("    List Teachers:");
             for (int i = 0; i < list.size(); i++) {
                 Teacher teacher = (Teacher) list.get(i);
-                String name = teacher.getName() + " " + teacher.getLastname();
+                String name = teacher.getName() + " " + teacher.getLastname()+" ("+teacher.getCi()+")";;
                 System.out.println("    • " + name);
             }
             System.out.println();
@@ -329,7 +329,6 @@ public class Menu {
         menu();
     }
 
-
     public void viewListClassroomAverage() {
         MyCircularDoublyLinkedList list = schoolService.getSchool().getClassroomList();
         if (list.size() > 0) {
@@ -373,7 +372,7 @@ public class Menu {
     public void viewListKardex() {
         MyCircularDoublyLinkedList list = schoolService.getSchool().getKardexList();
         if (list.size() > 0) {
-            System.out.println("    List Kardex:");
+            System.out.println("   List Kardex: **** NO SORT******");
             for (int i = 0; i < list.size(); i++) {
                 Kardex kardex = (Kardex) list.get(i);
                 String name = kardex.getStudent().getName() + " - " + kardex.getClassroom().getCode() + " - " + kardex.getFinalAverage();

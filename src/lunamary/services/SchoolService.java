@@ -10,6 +10,7 @@ import lunamary.readWriteData.AbstractFactory;
 import lunamary.readWriteData.ReadWriteFile;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class SchoolService {
@@ -216,7 +217,7 @@ public class SchoolService {
         }
     }
 
-    public boolean exportDataToFile(String path, MyArrayList<MyHashMap<String, String>> values) {
+    public boolean exportDataToFile(String path, Map<String, MyLinkedList<Kardex>>  values) {
         ReadWriteFile file = AbstractFactory.createFile(path);
         if (file == null) {
             return false;

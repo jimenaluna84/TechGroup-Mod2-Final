@@ -247,7 +247,8 @@ public class SchoolService {
         }
     }
 
-    public boolean exportDataToFile(String path, Map<String, MyLinkedList<Kardex>> values) {
+    public boolean exportDataToFile(String path) {
+        Map<String, MyLinkedList<Kardex>> values = schoolService.getSchool().getKardexHashMap();
         ReadWriteFile file = AbstractFactory.createFile(path);
         if (file == null) {
             return false;
@@ -308,7 +309,6 @@ public class SchoolService {
         }
     }
 
-    }
 
 
     public String evaluateAverage(Classroom classroom, int average) {

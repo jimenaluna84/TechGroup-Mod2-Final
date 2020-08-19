@@ -49,7 +49,7 @@ public class ReadWriteCSV extends ReadWriteFile {
     }
 
     @Override
-    public boolean writeEntries(Map<String, MyLinkedList<Kardex>> entries) {
+    public boolean writeLines(Map<String, MyLinkedList<Kardex>> entries) {
 
         try {
             CSVWriter writer = new CSVWriter(new OutputStreamWriter(new FileOutputStream(this.path), StandardCharsets.UTF_8),

@@ -4,7 +4,6 @@ import datastructures.arraylist.MyArrayList;
 import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
 import datastructures.hashmap.MyHashMap;
 import datastructures.linkedlist.MyLinkedList;
-import jdk.dynalink.NamedOperation;
 import lunamary.model.modelPerson.*;
 import lunamary.model.modelSchool.*;
 import lunamary.readWriteData.AbstractFactory;
@@ -49,19 +48,13 @@ public class SchoolService {
 
     }
 
-    public static void registerClassroom(String id, String name) {
+    public static void registerClassroom(String codeClassroom, String name) {
         ClassroomService classroomService = new ClassroomService();
-        Classroom classroom = classroomService.crateClassroom(id, name);
+        Classroom classroom = classroomService.crateClassroom(codeClassroom, name);
         getSchoolService().addClassroom(classroom);
 
     }
 
-//    public static void assignParentStudent(String parentId, String StudentId) {
-//        ParentService parentService = new ParentService();
-//        Parent parent = parentService.createParent(name, lastName, ci);
-//        school.addParent(parent);
-//
-//    }
 
     public static void assignParentStudent(int parentId, int StudentId, String codeClassroom) {
         Parent parent = SearchService.getParent(parentId);
@@ -229,7 +222,7 @@ public class SchoolService {
         if (file == null) {
             return false;
         } else {
-            return file.writeEntries(values);
+            return file.writeLines(values);
         }
     }
 

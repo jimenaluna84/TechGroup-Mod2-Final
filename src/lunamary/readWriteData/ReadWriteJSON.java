@@ -48,7 +48,7 @@ public class ReadWriteJSON extends ReadWriteFile {
     }
 
     @Override
-    public boolean writeEntries(Map<String, MyLinkedList<Kardex>> dataStudent) {
+    public boolean writeLines(Map<String, MyLinkedList<Kardex>> dataStudent) {
 
         try {
             BufferedWriter writer = Files.newBufferedWriter(Paths.get(this.path));

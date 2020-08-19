@@ -20,6 +20,12 @@ public class DeviceService implements IObserver {
     @Override
     public void sendNotification() {
 
+        System.out.println(" ");
+        System.out.print(this.device.getType() + " ");
+        System.out.print(this.device.getIdentifier() + " ");
+        System.out.print(this.device.getTemplateMsj()+ " ");
+        System.out.println(" ");
+
 
     }
 

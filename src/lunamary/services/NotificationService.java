@@ -1,37 +1,75 @@
 package lunamary.services;
 
-import lunamary.model.modelPerson.AbstractPerson;
-import lunamary.model.modelPerson.Device;
-import lunamary.model.modelPerson.Director;
-import lunamary.model.modelPerson.Parent;
+import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
+import datastructures.linkedlist.MyLinkedList;
+import lunamary.model.modelPerson.*;
+import lunamary.model.modelSchool.Classroom;
 
-public class NotificationService implements IObserver {
-    private final AbstractPerson person;
-    private final Device device;
+import java.util.HashMap;
+import java.util.Map;
 
-    public NotificationService(Director senderNotification, Device deviceReceiversNotification) {
-        this.person = senderNotification;
-        this.device = deviceReceiversNotification;
-    }
+import static lunamary.services.SchoolService.getSchoolService;
 
+public class NotificationService {
+    private SubjectObservable subjectObservable;
 
-    @Override
-    public void sendNotification() {
-
-        print("***********Notification******* " + "\n"
-                + "Device receiver: " + device.getType() + " " + device.getIdentifier() + "\n"
-                + "Dear Mis/ Mister " + device.getOwner().getName() + " " + device.getOwner().getLastname() + "\n"
-                + "This notification is to notify that your son/daugter  has not been accomplishing the expectations required.\n"
-                + "I would like to get a meeting to discuss about it." + "\n"
-                + "Best Regards \n"
-                + person.getName() + " " + person.getLastname());
-
+    public NotificationService() {
+        subjectObservable = new SubjectObservable();
 
     }
 
 
-    public void print(String text) {
-        System.out.print(text);
+    public void registerObservers() {
+
+        HashMap<String, MyLinkedList<Kardex>> listHash = getSchoolService().getKardexHashMap();
+        if (listHash.size() > 0) {
+
+            // for (int i = 0; i < listHash.size(); i++) {
+            for (Map.Entry<String, MyLinkedList<Kardex>> listHashlist : listHash.entrySet()) {
+                MyLinkedList<Kardex> kardexList = listHashlist.getValue();//listHash.get(i).;
+                if (kardexList.size() > 0) {
+                    for (int j = 0; j < kardexList.size(); j++) {
+                        Student student = (Student) kardexList.get(j).getStudent();
+                        String template = getTemplate(student);
+                        MyCircularDoublyLinkedList<Parent> parentList = student.getParents();
+                        for (int k = 0; k < parentList.size(); k++) {
+                            Parent parent = (Parent) parentList.get(k);
+                            Device device = parent.getDevice();
+                            device.setTemplateMsj(template);
+                            IObserver iObserver = new DeviceService(device);
+                            subjectObservable.registerObserver(iObserver);
+
+                        }
+
+                    }
+
+                }
+            }
+        }
+    }
+
+
+    private String getTemplate(Student student) {
+
+        String template = null;
+
+        if (student.getStatus().equals("EXPELLED")) {
+            template = "The student is EXPELLED";
+        } else if (student.getStatus().equals("REPROVED")) {
+            template = "The student is REPROVED";
+        } else if (student.getStatus().equals("APPROVED")) {
+            template = "The student has APPROVED";
+        } else if (student.getStatus().equals("SCHOLARSHIP")) {
+            template = "The student is SCHOLARSHIP ";
+        }
+        return template;
+
+    }
+
+
+    public void notifyObservers() {
+        subjectObservable.notifyObservers();
     }
 
 }
+

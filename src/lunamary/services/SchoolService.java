@@ -4,6 +4,7 @@ import datastructures.arraylist.MyArrayList;
 import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
 import datastructures.hashmap.MyHashMap;
 import datastructures.linkedlist.MyLinkedList;
+import jdk.dynalink.NamedOperation;
 import lunamary.model.modelPerson.*;
 import lunamary.model.modelSchool.*;
 import lunamary.readWriteData.AbstractFactory;
@@ -26,13 +27,14 @@ public class SchoolService {
     public SchoolService(String nameSchool, String address) {
         this.school = new School();
         this.setDataSchool(nameSchool, address);
+
     }
 
-    public static SchoolService getSchoolService() {
-        if (schoolService == null) {
-            schoolService = new SchoolService();
+    public static School getSchoolService() {
+        if (school == null) {
+            school = new School();
         }
-        return schoolService;
+        return school;
     }
 
     public static School getSchool() {
@@ -43,14 +45,14 @@ public class SchoolService {
     public void registerDirector(String name, String lastname, int ci, String gender) {
         DirectorService directorService = new DirectorService();
         Director director = directorService.createDirector(name, lastname, ci, gender);
-        getSchoolService().getSchool().setDirector(director);
+        getSchoolService().setDirector(director);
 
     }
 
     public static void registerClassroom(String id, String name) {
         ClassroomService classroomService = new ClassroomService();
         Classroom classroom = classroomService.crateClassroom(id, name);
-        getSchoolService().getSchool().addClassroom(classroom);
+        getSchoolService().addClassroom(classroom);
 
     }
 
@@ -70,18 +72,18 @@ public class SchoolService {
 
     }
 
-    public static void registerDevice(String type, String identifier, String name, String lastname, int ci) {
+    public static void registerDevice(String type, String identifier, String name, String lastName, int ci) {
         Parent parent = SearchService.getParent(ci);
         DeviceService deviceService = new DeviceService();
-        Device device = deviceService.createDevice(type, identifier, parent);
-        getSchoolService().getSchool().addDevice(device);
+        Device device = deviceService.createDevice(type, identifier);
+        getSchoolService().addDevice(device);
     }
 
 
     public static void registerTeacher(String name, String lastname, int ci, String gender) {
         TeacherService teacherService = new TeacherService();
         Teacher teacher = teacherService.createTeacher(name, lastname, ci, gender);
-        getSchoolService().getSchool().addTeacher(teacher);
+        getSchoolService().addTeacher(teacher);
 
     }
 
@@ -96,10 +98,10 @@ public class SchoolService {
 
     }
 
-    public static void registerAverageClassroom(String codeClassroom, int averageScholarshipGrade, int minimumAverageApprobation) {
+    public static void registerAverageClassroom(String codeClassroom, int averageScholarshipGrade, int minimumAverageApprobation, int expelled) {
         Classroom classroom = SearchService.getClassroom(codeClassroom);
         DirectorService directorService = new DirectorService();
-        directorService.assignAverage(classroom, averageScholarshipGrade, minimumAverageApprobation);
+        directorService.assignAverage(classroom, averageScholarshipGrade, minimumAverageApprobation, expelled);
 
     }
 
@@ -109,10 +111,12 @@ public class SchoolService {
 
         ParentService parentService = new ParentService();
         Parent parent = parentService.createParent(nameParent, lastNameParent, ciParent, genderParent);
+        getSchoolService().addParent(parent);
 
         DeviceService deviceService = new DeviceService();
-        deviceService.createDevice(typeDevice1, identifier1, parent);
-        deviceService.createDevice(typeDevice2, identifier2, parent);
+        Device device1 = deviceService.createDevice(typeDevice1, identifier1);
+        deviceService.createDevice(typeDevice2, identifier2);
+        parent.setDevice(device1);
 
         Classroom classroom = SearchService.getClassroom(codeClassroom);
         StudentService studentService = new StudentService();
@@ -134,7 +138,7 @@ public class SchoolService {
         Subject subject = SearchService.getSubject(classroom, nameSubject);
         TeacherService teacherService = new TeacherService();
         GradeStudent gradeStudent = teacherService.createGradeStudent(teacher, student, subject, year, newGrade);
-        getSchoolService().getSchool().addGradeStudent(gradeStudent);
+        getSchoolService().addGradeStudent(gradeStudent);
 
 
     }
@@ -177,8 +181,10 @@ public class SchoolService {
                         Student student = (Student) listStudents.get(j);
                         int finalAverage = computeAverageStudent(student, year);
                         Kardex kardex = kardexService.createKardex(student, room, finalAverage, year);
-                        getSchoolService().getSchool().addKardex(kardex);
+                        getSchoolService().addKardex(kardex);
                         addkardexOrderByDesc(kardex);
+                        student.setStatus(evaluateAverage(room, finalAverage));
+
                     }
                 }
 
@@ -198,6 +204,7 @@ public class SchoolService {
                 if (gradeStudent.getStudent().getId() == student.getId() && gradeStudent.getYear().equals(year)) {
                     total += gradeStudent.getGrade().getGrade();
                     cont++;
+
                 }
             }
 
@@ -217,7 +224,7 @@ public class SchoolService {
         }
     }
 
-    public boolean exportDataToFile(String path, Map<String, MyLinkedList<Kardex>>  values) {
+    public boolean exportDataToFile(String path, Map<String, MyLinkedList<Kardex>> values) {
         ReadWriteFile file = AbstractFactory.createFile(path);
         if (file == null) {
             return false;
@@ -279,6 +286,31 @@ public class SchoolService {
 
     }
 
+
+    public String evaluateAverage(Classroom classroom, int average) {
+        String status = "";
+        int expelled = classroom.getAverageExpelled();
+        int scholarship = classroom.getAverageScholarshipGrade();
+        int approvedMin = classroom.getMinimumAverageApprobation();
+
+        if (average <= expelled) {
+            status = "EXPELLED";
+        } else if (average <= approvedMin) {
+            status = "REPROVED";
+        } else if (average < scholarship) {
+            status = "APPROVED";
+        } else if (average == scholarship) {
+            status = "SCHOLARSHIP";
+        }
+        return status;
+
+    }
+
+    public void notifyDevices() {
+        NotificationService notificationService = new NotificationService();
+        notificationService.registerObservers();
+        notificationService.notifyObservers();
+    }
 
 }
 

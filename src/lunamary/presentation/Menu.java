@@ -72,6 +72,11 @@ public class Menu {
             } else {
                 System.out.println("\t 9. Director generate General Report    (*)");
             }
+            if (selectOption.contains("10") == false) {
+                System.out.println("\t 10. Modified Grade Student");
+            } else {
+                System.out.println("\t 10. Modified Grade Student    (*)");
+            }
             System.out.println("\t Para salir ingrese 's'. ");
             System.out.println("-------------------------------------------------");
             System.out.print("Seleccione una opcion: ");
@@ -107,6 +112,10 @@ public class Menu {
                     viewReport();
                     option = false;
                     break;
+                case "10":
+                    viewEdit();
+                    option = false;
+                    break;
                 case "s":
                     option = false;
                     break;
@@ -116,6 +125,22 @@ public class Menu {
             }
             // if (selectOption.contains("5") == false){System.out.println("\t 5. Register New Subject");}else{System.out.println("\t 5. Register New Subject   (*)");};
         } while (option);
+    }
+
+    public void viewEdit() {
+        System.out.print("\t Insert Student  CI: ");
+        String ciStudent = scanner.nextLine();
+        System.out.print("\t Name Subject: ");
+        String nameSubject = scanner.nextLine();
+        System.out.print("\t New Subject Grade ");
+        String grade = scanner.nextLine();
+        System.out.print("\t Insert  year: ");
+        String year = scanner.nextLine();
+        schoolService.editGradeStudent( Integer.parseInt(grade), "MODIFIED", Integer.parseInt(ciStudent), nameSubject);
+        schoolService.computeAverageStudents(year);
+        viewListKardexHash();
+        schoolService.notifyDevices();
+        viewNotifications();
     }
 
     public void viewReport() {

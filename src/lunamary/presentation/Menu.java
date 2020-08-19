@@ -104,8 +104,7 @@ public class Menu {
                     option = false;
                     break;
                 case "9":
-                    viewListKardexHash();
-                    viewNotifications();
+                    viewReport();
                     option = false;
                     break;
                 case "s":
@@ -117,6 +116,15 @@ public class Menu {
             }
             // if (selectOption.contains("5") == false){System.out.println("\t 5. Register New Subject");}else{System.out.println("\t 5. Register New Subject   (*)");};
         } while (option);
+    }
+
+    public void viewReport() {
+        System.out.print("\t Insert  year: ");
+        String year = scanner.nextLine();
+        schoolService.computeAverageStudents(year);
+        viewListKardexHash();
+        schoolService.notifyDevices();
+        viewNotifications();
     }
 
     public void uiRegisterNewSchool() {
@@ -288,11 +296,11 @@ public class Menu {
         System.out.println("=================================================");
         System.out.print("\t Insert the name Classroom: ");
         String nameClassroom = scanner.nextLine();
-        System.out.print("\t Insert the promedio: ");
+        System.out.print("\t Insert scholarship average: ");
         String average = scanner.nextLine();
-        System.out.print("\t Insert the promedio minimo de aprobacion: ");
+        System.out.print("\t Insert minimum approbation Average : ");
         String averageMinApproval = scanner.nextLine();
-        System.out.print("\t Insert the average expelled: ");
+        System.out.print("\t Insert limit expelled average: ");
         String averageExpelled = scanner.nextLine();
         schoolService.registerAverageClassroom(nameClassroom, Integer.parseInt(average), Integer.parseInt(averageMinApproval), Integer.parseInt(averageExpelled));
         System.out.println("================================================= \n");
@@ -312,6 +320,8 @@ public class Menu {
         String lastNameStudent = scanner.nextLine();
         System.out.print("\t Insert the CI Student: ");
         String ciStudent = scanner.nextLine();
+        System.out.print("\t Insert Student gender: ");
+        String gender = scanner.nextLine();
         System.out.print("\t Insert the name Parent: ");
         String nameParent = scanner.nextLine();
         System.out.print("\t Insert the last name Parent: ");
@@ -324,7 +334,9 @@ public class Menu {
         String numberDevice = scanner.nextLine();
         System.out.print("\t Insert the E-mail: ");
         String email = scanner.nextLine();
-        //schoolService.registerStudent(nameClassroom, nameStudent, lastNameStudent, Integer.parseInt(ciStudent), nameParent, lastNameParent, Integer.parseInt(ciParent), typeDevice, numberDevice, "Email", email);
+        System.out.print("\t Insert Parent gender: ");
+        String genderParent = scanner.nextLine();
+        schoolService.registerStudent(nameClassroom, nameStudent, lastNameStudent, Integer.parseInt(ciStudent), gender, nameParent, lastNameParent, Integer.parseInt(ciParent), typeDevice, numberDevice, "Email", email, genderParent);
         System.out.println("================================================= \n");
         selectOption += "7";
         menu();
@@ -442,7 +454,7 @@ public class Menu {
                     Kardex kardex = (Kardex) listHashlist.getValue().get(i);
                     String name = kardex.getStudent().getName();
 //                    System.out.println("    • " + name);
-                    rows += createRow(new String[]{kardex.getClassroom().getCode(),  name + " "+kardex.getStudent().getLastname(), kardex.getFinalAverage() + ""},19) + "\n";
+                    rows += createRow(new String[]{kardex.getClassroom().getCode(), name + " " + kardex.getStudent().getLastname(), kardex.getFinalAverage() + ""}, 19) + "\n";
 //                    System.out.println();
                 }
                 rows += "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
@@ -463,7 +475,7 @@ public class Menu {
         System.out.println("=================================================");
     }
 
-    public String createRow(String[] data,int sizeCol) {
+    public String createRow(String[] data, int sizeCol) {
         String row = "";
         String[] cols = data;
         String newCol = "";
@@ -485,7 +497,7 @@ public class Menu {
         rows += "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n";
         for (int i = 0; i < parentList.size(); i++) {
             Parent parent = parentList.get(i);
-            rows += createRow(new String[]{parent.getDevice().getType(), parent.getDevice().getTemplateMsj(), parent.getName() + " " + parent.getLastname() + ""},29) + "\n";
+            rows += createRow(new String[]{parent.getDevice().getType(), parent.getDevice().getTemplateMsj(), parent.getName() + " " + parent.getLastname() + ""}, 29) + "\n";
         }
         System.out.println(rows);
     }
@@ -560,7 +572,7 @@ public class Menu {
 
         schoolService.registerStudent("4A", "Ramiro", "Student3A", 513, "M", "momRamiro", "Milan", 415, "Celphone", "7985552450", "Email", "mom9@gmail.com", "M");
         schoolService.registerStudent("4A", "Lucas", "Student3A", 514, "M", "momLucas", "Montaño", 416, "Celphone", "798555450", "Email", "mom9@gmail.com", "M");
-         viewListStudentsByCourse();
+        viewListStudentsByCourse();
 
 
         schoolService.assignGradeStudent("1A", 200, 100, "Test", 500, "Spanish-1", "2020");
@@ -618,7 +630,7 @@ public class Menu {
         schoolService.computeAverageStudents("2020");
         viewListKardex();
         viewListKardexHash();
-         System.out.printf("******************** AFTER IMPORT - JSON  GRADES 3A TERCERO BASICO ************************************");
+        System.out.printf("******************** AFTER IMPORT - JSON  GRADES 3A TERCERO BASICO ************************************");
         schoolService.importGradeFromFile("src\\lunamary\\resources\\file.json");
         schoolService.computeAverageStudents("2020");
         viewListKardex();
@@ -633,7 +645,14 @@ public class Menu {
         schoolService.exportDataToFile("src\\lunamary\\resources\\ExportTest1.CSV", schoolService.getSchool().getKardexHashMap());
         schoolService.notifyDevices();
         viewNotifications();
-
+        System.out.printf("******************** AFTER EDIT GRADE  ************************************");
+        schoolService.editGradeStudent(100, "MODIFIED", 511, "Spanish-3");
+        schoolService.editGradeStudent(100, "MODIFIED", 511, "English-3");
+        schoolService.computeAverageStudents("2020");
+        viewListKardex();
+        viewListKardexHash();
+        schoolService.notifyDevices();
+        viewNotifications();
     }
 
 

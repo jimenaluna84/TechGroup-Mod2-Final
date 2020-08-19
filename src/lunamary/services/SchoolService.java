@@ -289,11 +289,11 @@ public class SchoolService {
         if (average <= expelled) {
             status = "EXPELLED";
         } else if (average <= approvedMin) {
-            status = "REPROVED";
+            status = "FAILED";
         } else if (average < scholarship) {
-            status = "APPROVED";
+            status = "PASSED";
         } else if (average == scholarship) {
-            status = "SCHOLARSHIP";
+            status = "SCHOLAR";
         }
         return status;
 
@@ -303,6 +303,16 @@ public class SchoolService {
         NotificationService notificationService = new NotificationService();
         notificationService.registerObservers();
         notificationService.notifyObservers();
+    }
+
+
+    public void editGradeStudent(int grade, String description, int ciStudent, String nameSubject) {
+        GradeService gradeService = new GradeService();
+        Grade newGrade = gradeService.createGrade(grade, description);
+
+        GradeStudent gradeStudent = SearchService.getGradeStudent(ciStudent, nameSubject);
+        gradeStudent.setGrade(newGrade);
+
     }
 
 }

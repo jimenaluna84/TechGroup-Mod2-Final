@@ -23,10 +23,8 @@ public class NotificationService {
 
         HashMap<String, MyLinkedList<Kardex>> listHash = getSchoolService().getKardexHashMap();
         if (listHash.size() > 0) {
-
-            // for (int i = 0; i < listHash.size(); i++) {
             for (Map.Entry<String, MyLinkedList<Kardex>> listHashlist : listHash.entrySet()) {
-                MyLinkedList<Kardex> kardexList = listHashlist.getValue();//listHash.get(i).;
+                MyLinkedList<Kardex> kardexList = listHashlist.getValue();
                 if (kardexList.size() > 0) {
                     for (int j = 0; j < kardexList.size(); j++) {
                         Student student = (Student) kardexList.get(j).getStudent();
@@ -54,13 +52,13 @@ public class NotificationService {
         String template = null;
 
         if (student.getStatus().equals("EXPELLED")) {
-            template = "The student is EXPELLED";
-        } else if (student.getStatus().equals("REPROVED")) {
-            template = "The student is REPROVED";
-        } else if (student.getStatus().equals("APPROVED")) {
-            template = "The student has APPROVED";
-        } else if (student.getStatus().equals("SCHOLARSHIP")) {
-            template = "The student is SCHOLARSHIP ";
+            template = "The student is EXPELLED :(";
+        } else if (student.getStatus().equals("FAILED")) {
+            template = "The student is FAILED :(";
+        } else if (student.getStatus().equals("PASSED")) {
+            template = "The student is PASSED :) ";
+        } else if (student.getStatus().equals("SCHOLAR")) {
+            template = "The student is SCHOLAR! :D ";
         }
         return template;
 

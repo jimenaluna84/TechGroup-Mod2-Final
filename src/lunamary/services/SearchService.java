@@ -11,18 +11,32 @@ import lunamary.model.modelSchool.Subject;
 public class SearchService {
 
 
+//    public static Classroom getClassroom(String codeClassroom) {
+//        Classroom classroom = null;
+//        MyCircularDoublyLinkedList<Classroom> elements = SchoolService.getSchool().getClassroomList();
+//
+//        for (int i = 0; i < elements.size(); i++) {
+//            Classroom element = elements.get(i);
+//            if (element.getCode().equals(codeClassroom)) {
+//                classroom = element;
+//            }
+//
+//        }
+//        return classroom;
+//    }
+
     public static Classroom getClassroom(String codeClassroom) {
-        Classroom classroom = null;
-        MyCircularDoublyLinkedList<Classroom> elements = SchoolService.getSchool().getClassroomList();
-
-        for (int i = 0; i < elements.size(); i++) {
-            Classroom element = elements.get(i);
-            if (element.getCode().equals(codeClassroom)) {
-                classroom = element;
-            }
-
-        }
-        return classroom;
+//        Classroom classroom = null;
+//        MyCircularDoublyLinkedList<Classroom> elements = SchoolService.getSchool().getClassRoomMap();
+//
+//        for (int i = 0; i < elements.size(); i++) {
+//            Classroom element = elements.get(i);
+//            if (element.getCode().equals(codeClassroom)) {
+//                classroom = element;
+//            }
+//
+//        }
+        return SchoolService.getSchool().getClassRoomMap().get(codeClassroom);
     }
 
     public static Teacher getTeacher(int ciTeacher) {

@@ -10,6 +10,7 @@ import lunamary.readWriteData.AbstractFactory;
 import lunamary.readWriteData.ReadWriteFile;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 
@@ -51,7 +52,8 @@ public class SchoolService {
     public static void registerClassroom(String codeClassroom, String name) {
         ClassroomService classroomService = new ClassroomService();
         Classroom classroom = classroomService.crateClassroom(codeClassroom, name);
-        getSchoolService().addClassroom(classroom);
+        //getSchoolService().addClassroom(classroom);
+        getSchoolService().addClassRoomMap(codeClassroom,classroom);
 
     }
 
@@ -159,15 +161,43 @@ public class SchoolService {
 
     }
 
+//    public void computeAverageStudents(String year) {
+//        schoolService.getSchool().setKardexList(new MyCircularDoublyLinkedList<>());
+//        schoolService.getSchool().setKardexHashMap(new HashMap<>());
+//
+//        KardexService kardexService = new KardexService();
+//        MyCircularDoublyLinkedList list = schoolService.getSchool().getClassroomList();
+//        if (list.size() > 0) {
+//            for (int i = 0; i < list.size(); i++) {
+//                Classroom room = (Classroom) list.get(i);
+//                MyCircularDoublyLinkedList listStudents = room.getStudentList();
+//                if (listStudents.size() > 0) {
+//                    for (int j = 0; j < listStudents.size(); j++) {
+//                        Student student = (Student) listStudents.get(j);
+//                        int finalAverage = computeAverageStudent(student, year);
+//                        Kardex kardex = kardexService.createKardex(student, room, finalAverage, year);
+//                        getSchoolService().addKardex(kardex);
+//                        addkardexOrderByDesc(kardex);
+//                        student.setStatus(evaluateAverage(room, finalAverage));
+//
+//                    }
+//                }
+//
+//            }
+//        }
+//
+//    }
+
     public void computeAverageStudents(String year) {
         schoolService.getSchool().setKardexList(new MyCircularDoublyLinkedList<>());
         schoolService.getSchool().setKardexHashMap(new HashMap<>());
 
+        MyArrayList<Classroom> list = schoolService.getSchool().getClassRoomMap().getValues();
+
         KardexService kardexService = new KardexService();
-        MyCircularDoublyLinkedList list = schoolService.getSchool().getClassroomList();
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
-                Classroom room = (Classroom) list.get(i);
+                Classroom room = list.get(i);
                 MyCircularDoublyLinkedList listStudents = room.getStudentList();
                 if (listStudents.size() > 0) {
                     for (int j = 0; j < listStudents.size(); j++) {
@@ -180,9 +210,9 @@ public class SchoolService {
 
                     }
                 }
-
             }
         }
+
 
     }
 
@@ -276,6 +306,7 @@ public class SchoolService {
                 index++;
             }
         }
+    }
 
     }
 
@@ -314,6 +345,10 @@ public class SchoolService {
         gradeStudent.setGrade(newGrade);
 
     }
+
+
+
+
 
 }
 

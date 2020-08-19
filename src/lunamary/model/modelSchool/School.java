@@ -1,6 +1,7 @@
 package lunamary.model.modelSchool;
 
 import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
+import datastructures.hashmap.MyHashMap;
 import datastructures.linkedlist.MyLinkedList;
 import lunamary.model.BaseModel;
 import lunamary.model.modelPerson.*;
@@ -20,6 +21,8 @@ public class School extends BaseModel {
     private MyCircularDoublyLinkedList<GradeStudent> gradeStudentList;
     private MyCircularDoublyLinkedList<Kardex> kardexList;
     private HashMap<String, MyLinkedList<Kardex>> kardexHashMap;
+    private MyHashMap<String,Classroom> classRoomMap;
+
 
 
     public School() {
@@ -29,6 +32,8 @@ public class School extends BaseModel {
         this.kardexList = new MyCircularDoublyLinkedList<>();
         this.kardexHashMap = new HashMap<>();
         this.parentList = new MyCircularDoublyLinkedList<>();
+        this.classRoomMap = new MyHashMap<>();
+
     }
 
     public String getName() {
@@ -135,6 +140,26 @@ public class School extends BaseModel {
 
     public void setKardexHashMap(HashMap<String, MyLinkedList<Kardex>> kardexHashMap) {
         this.kardexHashMap = kardexHashMap;
+    }
+
+
+
+
+
+
+
+
+
+    public MyHashMap<String, Classroom> getClassRoomMap() {
+        return classRoomMap;
+    }
+
+    public void setClassRoomMap(MyHashMap<String, Classroom> classRoomMap) {
+        this.classRoomMap = classRoomMap;
+    }
+
+    public void addClassRoomMap(String code,Classroom classroom){
+        this.classRoomMap.put(code,classroom);
     }
 
 }

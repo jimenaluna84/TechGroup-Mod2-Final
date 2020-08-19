@@ -1,6 +1,8 @@
 package lunamary.model.modelSchool;
 
 import datastructures.circulardoublylinkedlist.MyCircularDoublyLinkedList;
+import datastructures.hashmap.MyHashMap;
+import datastructures.linkedlist.MyLinkedList;
 import lunamary.model.BaseModel;
 import lunamary.model.modelPerson.Student;
 
@@ -13,6 +15,8 @@ public class Classroom extends BaseModel {
     private int averageExpelled;
     private String name;
     private String code;
+
+    private MyHashMap<Student, MyLinkedList<Subject>> studentSubject;
 
 
     public Classroom(String code, String name) {
@@ -86,4 +90,16 @@ public class Classroom extends BaseModel {
     public void addStudent(Student student) {
         this.studentList.add(student);
     }
+
+    public MyHashMap<Student, MyLinkedList<Subject>> getStudentSubject() {
+        return studentSubject;
+    }
+
+    public void setStudentSubject(MyHashMap<Student, MyLinkedList<Subject>> studentSubject) {
+        this.studentSubject = studentSubject;
+    }
+    public void addStudentSubject(Student student,MyLinkedList<Subject> subjectList) {
+        this.studentSubject.put(student,subjectList);
+    }
+
 }
